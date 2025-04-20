@@ -1,0 +1,241 @@
+/* ====== Base Page Setup ====== */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #808080; /* خلفية رمادية */
+}
+
+/* ====== Header & Sidebar Styles (من المفترض أنها تديرها صفحة Navbar) ====== */
+
+/* ====== Main Container ====== */
+.mcb-main-container {
+  margin-left: 250px; /* لتفادي تغطية المحتوى بالسايد بار */
+  padding: 80px 20px 20px 20px;
+  background-color: #f2f2f2;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ====== Page Header & Breadcrumb ====== */
+.mcb-page-header {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.mcb-page-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #000;
+}
+.mcb-breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* ====== Search Area ====== */
+.mcb-search-area {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.mcb-search-area h2 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.mcb-search-box {
+  display: flex;
+  gap: 10px;
+}
+.mcb-search-box input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.mcb-search-box button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.mcb-search-box button:hover {
+  background-color: #0056b3;
+}
+
+/* ====== Results Section ====== */
+.mcb-results-section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+.mcb-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.mcb-results-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+.mcb-results-table th,
+.mcb-results-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #000;
+}
+.mcb-results-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ====== Status Styles ====== */
+.status-confirmed {
+  color: green;
+  font-weight: bold;
+}
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+.status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+/* ====== Action Buttons ====== */
+.mcb-action-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.mcb-modify-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+.mcb-modify-btn:hover {
+  background-color: #5a6268;
+}
+.mcb-cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.mcb-cancel-btn:hover {
+  background-color: #c82333;
+}
+
+/* ====== Modals ====== */
+.mcb-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.mcb-modal {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.mcb-modal h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.mcb-modal form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #000;
+}
+.mcb-modal form input,
+.mcb-modal form select,
+.mcb-modal form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #000;
+}
+.mcb-form-row {
+  display: flex;
+  gap: 10px;
+}
+.mcb-form-row > div {
+  flex: 1;
+}
+.mcb-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+.mcb-modal-buttons button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.mcb-modal-save {
+  background-color: #007bff;
+  color: #fff;
+}
+.mcb-modal-save:hover {
+  background-color: #0056b3;
+}
+.mcb-modal-cancel {
+  background-color: #6c757d;
+  color: #fff;
+}
+.mcb-modal-cancel:hover {
+  background-color: #5a6268;
+}
+.mcb-modal-confirm {
+  background-color: #dc3545;
+  color: #fff;
+}
+.mcb-modal-confirm:hover {
+  background-color: #c82333;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 600px) {
+  .mcb-form-row {
+    flex-direction: column;
+  }
+  .mcb-main-container {
+    margin-left: 0;
+  }
+  .mcb-results-table th, .mcb-results-table td {
+    font-size: 12px;
+  }
+}

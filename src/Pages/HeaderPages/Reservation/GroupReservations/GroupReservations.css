@@ -1,0 +1,291 @@
+/* ========== Reset/Basic ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* ========== الحاوية الرئيسية للصفحة ========== */
+.group-reservations-main-container {
+  width: 100%;
+  margin-top: 80px; /* ترك مساحة للهيدر */
+  padding: 20px;
+  background-color: #fff;
+  /* لتغطي العرض الكامل يمكن إزالة max-width و margin auto */
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ========== العنوان + Breadcrumb ========== */
+.group-reservations-page-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #000;
+}
+.group-reservations-breadcrumb {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ========== قسم البحث والتصفية ========== */
+.group-reservations-search-section {
+  margin-bottom: 20px;
+}
+.group-reservations-search-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #000;
+}
+.group-reservations-search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+.group-reservations-search-filters input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.group-reservations-date-filter {
+  display: flex;
+  flex-direction: column;
+}
+.group-reservations-date-filter label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.group-reservations-search-btn {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.group-reservations-search-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ========== رسالة النجاح ========== */
+.group-reservations-success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ========== جدول الحجوزات ========== */
+.group-reservations-table-section {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.group-reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.group-reservations-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+.group-reservations-table th,
+.group-reservations-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+.group-reservations-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* ========== حالات الحجوزات ========== */
+.status-confirmed {
+  color: green;
+  font-weight: bold;
+}
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+.status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+/* ========== أزرار الإجراءات ========== */
+.group-reservations-action-btn {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.group-reservations-details-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+.group-reservations-details-btn:hover {
+  background-color: #5a6268;
+}
+.group-reservations-modify-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+.group-reservations-modify-btn:hover {
+  background-color: #0056b3;
+}
+.group-reservations-cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.group-reservations-cancel-btn:hover {
+  background-color: #c82333;
+}
+
+/* ========== ترقيم الصفحات ========== */
+.group-reservations-pagination {
+  text-align: center;
+}
+.group-reservations-pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.group-reservations-pagination button:hover {
+  background-color: #0056b3;
+}
+.group-reservations-page-number {
+  margin: 0 2px;
+  padding: 6px 12px;
+  background-color: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.group-reservations-page-number.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* ========== Modals ========== */
+.group-reservations-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.group-reservations-modal {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.group-reservations-modal h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.group-reservations-modal-content {
+  margin-bottom: 20px;
+}
+.group-reservations-modal-content p {
+  margin: 8px 0;
+}
+.group-reservations-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.group-reservations-modal-close-btn,
+.group-reservations-modal-cancel-btn,
+.group-reservations-modal-save-btn,
+.group-reservations-modal-confirm-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.group-reservations-modal-close-btn,
+.group-reservations-modal-cancel-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+.group-reservations-modal-close-btn:hover,
+.group-reservations-modal-cancel-btn:hover {
+  background-color: #5a6268;
+}
+.group-reservations-modal-save-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+.group-reservations-modal-save-btn:hover {
+  background-color: #0056b3;
+}
+.group-reservations-modal-confirm-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.group-reservations-modal-confirm-btn:hover {
+  background-color: #c82333;
+}
+
+/* ========== حقول نموذج التعديل ========== */
+.group-reservations-modal form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+.group-reservations-modal form input,
+.group-reservations-modal form select,
+.group-reservations-modal form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* ========== Responsiveness ========== */
+@media (max-width: 600px) {
+  .group-reservations-search-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,297 @@
+/* ====== Base Styles ====== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  /* ====== Placeholders for Header & Sidebar ====== */
+  .header, .sidebar {
+    background-color: transparent;
+  }
+  
+  /* ====== Main Container ====== */
+  .main-container {
+    margin: 80px auto 20px auto;
+    max-width: 1000px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* ====== Page Header & Breadcrumb ====== */
+  .page-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .page-header h1 {
+    font-size: 32px;
+    margin: 0;
+    color: #000;
+  }
+  .breadcrumb {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+  }
+  
+  /* ====== Shift Information Section ====== */
+  .shift-section {
+    margin-bottom: 30px;
+  }
+  .shift-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #000;
+    text-align: center;
+  }
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* ====== Load Transactions Button ====== */
+  .form-buttons {
+    text-align: center;
+  }
+  .load-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .load-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* ====== Transactions Summary Section ====== */
+  .transactions-section {
+    margin-bottom: 30px;
+  }
+  .transactions-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #000;
+  }
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .transactions-table thead {
+    background-color: #007bff;
+    color: #fff;
+  }
+  .transactions-table th,
+  .transactions-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    text-align: left;
+  }
+  .total-row td {
+    font-weight: bold;
+  }
+  .transactions-table tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* ====== Cash Details Section ====== */
+  .cash-section {
+    margin-bottom: 30px;
+  }
+  .cash-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #000;
+    text-align: center;
+  }
+  .cash-section .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  .cash-section .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .cash-section .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .cash-section .form-group input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .cash-section .form-group input[readonly] {
+    background-color: #e9ecef;
+  }
+  
+  /* ====== Non-Cash Payments Section ====== */
+  .noncash-section {
+    margin-bottom: 30px;
+  }
+  .noncash-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #000;
+  }
+  .noncash-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .noncash-table thead {
+    background-color: #007bff;
+    color: #fff;
+  }
+  .noncash-table th,
+  .noncash-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    text-align: left;
+  }
+  .noncash-table tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* ====== Cashier Remarks Section ====== */
+  .remarks-section {
+    margin-bottom: 30px;
+  }
+  .remarks-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #000;
+    text-align: center;
+  }
+  .remarks-section textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+  }
+  
+  /* ====== Process Transaction Button ====== */
+  .process-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  .process-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .process-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* ====== Final Confirmation Modal ====== */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .modal {
+    background-color: #fff;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .modal h2 {
+    margin-top: 0;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #000;
+  }
+  .modal-content {
+    margin-bottom: 20px;
+  }
+  .modal-content p {
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .modal-cancel-btn,
+  .modal-confirm-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .modal-cancel-btn {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  .modal-cancel-btn:hover {
+    background-color: #5a6268;
+  }
+  .modal-confirm-btn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  .modal-confirm-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* ====== Responsive Styles ====== */
+  @media (max-width: 600px) {
+    .form-row {
+      flex-direction: column;
+    }
+    .main-container {
+      margin: 80px 10px 20px 10px;
+    }
+  }
+  

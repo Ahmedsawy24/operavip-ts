@@ -1,0 +1,271 @@
+/* ====== Base Styles for Message Page ====== */
+
+/* Leave space for header (60px) and sidebar (250px) */
+.message-container {
+    margin-top: 80px; /* space for header */
+    margin-left: 260px; /* space for sidebar */
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+  }
+  
+  /* Page Header */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .page-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+  }
+  
+  /* Header Buttons */
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Buttons with different styles */
+  .btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    color: #fff;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+  }
+  .btn-info:hover {
+    background-color: #117a8b;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+  }
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+  }
+  .btn-warning:hover {
+    background-color: #e0a800;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+  }
+  .btn-danger:hover {
+    background-color: #bd2130;
+  }
+  
+  /* Search & Filter Bar */
+  .search-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .search-filter-bar input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-filter-bar select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Content Wrapper */
+  .content-wrapper {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Inbox List (Left Side) */
+  .inbox-list {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+  
+  .inbox-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .message-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .message-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .message-item:last-child {
+    border-bottom: none;
+  }
+  
+  .message-item.unread {
+    font-weight: bold;
+    background-color: #fafafa;
+  }
+  
+  /* Avatar */
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Message Info */
+  .message-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message-info .sender {
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .message-info .subject {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .message-info .snippet {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  /* Message Meta (Time, Pin, Delete) */
+  .message-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .message-meta .time {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  /* Pin & Delete Buttons */
+  .pinBtn,
+  .deleteBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+  
+  .pinBtn:hover,
+  .deleteBtn:hover {
+    color: #333;
+  }
+  
+  /* Message View (Right Side) */
+  .message-view {
+    flex: 1;
+    min-height: 600px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+  }
+  
+  .message-view h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .message-view p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Action Buttons in Message View */
+  .message-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Compose Message (Bottom Section) */
+  .compose-message {
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+  }
+  
+  .compose-message h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  #composeForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #composeForm label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  #composeForm select,
+  #composeForm input[type="text"],
+  #composeForm textarea,
+  #composeForm input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  #composeForm button[type="submit"] {
+    align-self: flex-start;
+  }
+  

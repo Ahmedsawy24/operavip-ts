@@ -1,0 +1,277 @@
+/* ====== Base Styles ====== */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* ====== Placeholders for Header & Sidebar ====== */
+.header, .sidebar {
+  background-color: transparent;
+}
+
+/* ====== Main Container ====== */
+.cnr-main-container {
+  margin: 80px auto 20px auto;
+  max-width: 1100px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ====== Page Header & Breadcrumb ====== */
+.cnr-page-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.cnr-page-header h1 {
+  font-size: 32px;
+  margin: 0;
+  color: #000;
+}
+.cnr-breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* ====== Section Headings ====== */
+.cnr-availability-section h2,
+.cnr-rooms-list-section h2,
+.cnr-guest-details-section h2,
+.cnr-payment-section h2,
+.cnr-review-section h2,
+.cnr-summary-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #000;
+}
+
+/* ====== Forms & Layout ====== */
+.cnr-form-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.cnr-form-group {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.cnr-form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.cnr-form-group input,
+.cnr-form-group select,
+.cnr-form-group textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.cnr-form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.cnr-search-btn,
+.cnr-reset-btn,
+.cnr-submit-btn,
+.cnr-cancel-btn,
+.cnr-update-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cnr-search-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+.cnr-search-btn:hover {
+  background-color: #218838;
+}
+.cnr-reset-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+.cnr-reset-btn:hover {
+  background-color: #5a6268;
+}
+.cnr-submit-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+.cnr-submit-btn:hover {
+  background-color: #218838;
+}
+.cnr-cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.cnr-cancel-btn:hover {
+  background-color: #c82333;
+}
+.cnr-update-btn {
+  background-color: #ffc107;
+  color: #fff;
+}
+.cnr-update-btn:hover {
+  background-color: #e0a800;
+}
+
+/* ====== Rooms Table ====== */
+.cnr-rooms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.cnr-rooms-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+.cnr-rooms-table th,
+.cnr-rooms-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+.cnr-rooms-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* ====== Review Content ====== */
+.cnr-review-content p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+.cnr-review-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* ====== Summary Table ====== */
+.cnr-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cnr-summary-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+.cnr-summary-table th,
+.cnr-summary-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+.cnr-summary-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* ====== Modals ====== */
+.cnr-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.cnr-modal {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.cnr-modal h2 {
+  margin-top: 0;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #000;
+}
+.cnr-modal-content {
+  margin-bottom: 20px;
+}
+.cnr-modal-content p {
+  margin: 8px 0;
+}
+.cnr-modal-content label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+.cnr-modal-content input[type="text"],
+.cnr-modal-content input[type="number"],
+.cnr-modal-content select,
+.cnr-modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.cnr-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.cnr-modal-cancel-btn {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.cnr-modal-cancel-btn:hover {
+  background-color: #5a6268;
+}
+.cnr-modal-confirm-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.cnr-modal-confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 600px) {
+  .cnr-form-row {
+    flex-direction: column;
+  }
+  .cnr-main-container {
+    margin: 80px 10px 20px 10px;
+  }
+  .cnr-rooms-table th, .cnr-rooms-table td,
+  .cnr-summary-table th, .cnr-summary-table td {
+    font-size: 12px;
+  }
+}

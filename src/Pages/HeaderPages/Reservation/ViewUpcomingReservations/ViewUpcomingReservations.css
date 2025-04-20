@@ -1,0 +1,268 @@
+/* ========== Reset/Basic ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* ========== الحاوية الرئيسية للصفحة ========== */
+.view-upcoming-reservations-main-container {
+  width: 100%;
+  margin-top: 80px; /* ترك مساحة للهيدر */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ========== العنوان الرئيسي + Breadcrumb ========== */
+.view-upcoming-reservations-page-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #000;
+}
+
+.view-upcoming-reservations-breadcrumb {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ========== قسم الفلترة والبحث ========== */
+.view-upcoming-reservations-filter-section {
+  margin-bottom: 20px;
+}
+
+.view-upcoming-reservations-filter-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.view-upcoming-reservations-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.view-upcoming-reservations-filter-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.view-upcoming-reservations-apply-filters-btn {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-upcoming-reservations-apply-filters-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ========== جدول الحجوزات القادمة ========== */
+.view-upcoming-reservations-table-section {
+  overflow-x: auto;
+}
+
+.view-upcoming-reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.view-upcoming-reservations-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.view-upcoming-reservations-table th,
+.view-upcoming-reservations-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+.view-upcoming-reservations-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* ألوان حالات الحجز */
+.view-upcoming-reservations-status-confirmed {
+  color: green;
+  font-weight: bold;
+}
+.view-upcoming-reservations-status-pending {
+  color: orange;
+  font-weight: bold;
+}
+.view-upcoming-reservations-status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+/* ========== أزرار الإجراءات ========== */
+.view-upcoming-reservations-action-btn {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.view-upcoming-reservations-details-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.view-upcoming-reservations-details-btn:hover {
+  background-color: #5a6268;
+}
+
+.view-upcoming-reservations-checkin-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.view-upcoming-reservations-checkin-btn:hover {
+  background-color: #218838;
+}
+
+/* ========== ترقيم الصفحات ========== */
+.view-upcoming-reservations-pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.view-upcoming-reservations-pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-upcoming-reservations-pagination button:hover {
+  background-color: #0056b3;
+}
+
+.view-upcoming-reservations-page-number {
+  margin: 0 2px;
+  padding: 6px 12px;
+  background-color: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-upcoming-reservations-page-number.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* ========== Modals ========== */
+.view-upcoming-reservations-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.view-upcoming-reservations-modal {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.view-upcoming-reservations-modal h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.view-upcoming-reservations-modal-content {
+  margin-bottom: 20px;
+}
+
+.view-upcoming-reservations-modal-content p {
+  margin: 8px 0;
+}
+
+.view-upcoming-reservations-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.view-upcoming-reservations-modal-close-btn,
+.view-upcoming-reservations-modal-save-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-upcoming-reservations-modal-close-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.view-upcoming-reservations-modal-close-btn:hover {
+  background-color: #5a6268;
+}
+
+.view-upcoming-reservations-modal-save-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.view-upcoming-reservations-modal-save-btn:hover {
+  background-color: #0056b3;
+}
+
+/* زر Confirm Check-In */
+#vur-checkinConfirmBtn {
+  background-color: #28a745;
+}
+#vur-checkinConfirmBtn:hover {
+  background-color: #218838;
+}
+
+/* ========== Responsiveness ========== */
+@media (max-width: 600px) {
+  .view-upcoming-reservations-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

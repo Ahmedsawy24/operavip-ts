@@ -1,0 +1,247 @@
+/* ========== Reset/Basic ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* ---------- Main Container ---------- */
+.cig-main-container {
+  margin: 80px auto 20px auto;
+  max-width: 1200px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ---------- Page Header & Breadcrumb ---------- */
+.cig-page-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.cig-page-header h1 {
+  font-size: 32px;
+  color: #000;
+}
+.cig-breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* ---------- Search Section ---------- */
+.cig-search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.cig-search-section input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.cig-search-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cig-search-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ---------- Alerts & Messages ---------- */
+.cig-no-results-alert,
+.cig-success-message {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.cig-no-results-alert {
+  background-color: #ffe5e5;
+  color: #b30000;
+  border: 1px solid #b30000;
+}
+.cig-success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* ---------- Results Table ---------- */
+.cig-results-section {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+.cig-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cig-results-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+.cig-results-table th,
+.cig-results-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+.cig-results-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* ---------- Status Classes ---------- */
+.cig-status-reserved {
+  color: green;
+  font-weight: bold;
+}
+.cig-status-checkedin {
+  color: green;
+  font-weight: bold;
+}
+.cig-status-pending {
+  color: orange;
+  font-weight: bold;
+}
+.cig-status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+/* ---------- Action Buttons ---------- */
+.cig-action-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.cig-checkin-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+.cig-checkin-btn:hover {
+  background-color: #218838;
+}
+.cig-assign-btn {
+  background-color: #17a2b8;
+  color: #fff;
+}
+.cig-assign-btn:hover {
+  background-color: #138496;
+}
+.cig-details-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+.cig-details-btn:hover {
+  background-color: #5a6268;
+}
+
+/* ---------- Modals ---------- */
+.cig-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.cig-modal {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.cig-modal h2 {
+  margin-top: 0;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #000;
+}
+.cig-modal-content {
+  margin-bottom: 20px;
+}
+.cig-modal-content p {
+  margin: 8px 0;
+}
+.cig-modal-content label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+.cig-modal-content input[type="text"],
+.cig-modal-content input[type="number"],
+.cig-modal-content select,
+.cig-modal-content textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.cig-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.cig-modal-cancel-btn {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.cig-modal-cancel-btn:hover {
+  background-color: #5a6268;
+}
+.cig-modal-confirm-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.cig-modal-confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .cig-search-section {
+    flex-direction: column;
+  }
+  .cig-main-container {
+    margin: 80px 10px 20px 10px;
+  }
+}

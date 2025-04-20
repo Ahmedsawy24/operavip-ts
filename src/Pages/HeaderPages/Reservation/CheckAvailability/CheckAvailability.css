@@ -1,0 +1,289 @@
+/* ========== Reset/Basic ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* ========== الحاوية الرئيسية للصفحة ========== */
+.check-availability-main-container {
+  width: 100%;
+  margin-top: 80px; /* ترك مساحة للهيدر */
+  padding: 20px;
+  background-color: #fff;
+  /* لتغطي العرض الكامل، يمكن إزالة max-width و margin auto */
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ========== العنوان الرئيسي + Breadcrumb ========== */
+.check-availability-page-title {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #000;
+}
+
+.check-availability-breadcrumb {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ========== قسم اختيار التاريخ ========== */
+.check-availability-date-selection {
+  margin-bottom: 20px;
+}
+
+.check-availability-date-selection h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.check-availability-dates-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.check-availability-date-item {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.check-availability-date-item label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.check-availability-check-btn {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check-availability-check-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ========== تنبيهات ورسائل ========== */
+.check-availability-no-availability-alert {
+  background-color: #ffe5e5;
+  color: #b30000;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #b30000;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.check-availability-reservation-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ========== جدول النتائج ========== */
+.check-availability-results {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.check-availability-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.check-availability-table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.check-availability-table th,
+.check-availability-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+
+.check-availability-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* ========== حالات الغرف ========== */
+.ca-status-available {
+  color: green;
+  font-weight: bold;
+}
+
+.ca-status-booked {
+  color: red;
+  font-weight: bold;
+}
+
+/* ========== أزرار الإجراءات ========== */
+.ca-action-btn {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ca-reserve-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.ca-reserve-btn:hover {
+  background-color: #218838;
+}
+
+/* ========== ترقيم الصفحات ========== */
+.check-availability-pagination {
+  text-align: center;
+}
+
+.check-availability-pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.check-availability-pagination button:hover {
+  background-color: #0056b3;
+}
+
+.check-availability-page-number {
+  margin: 0 2px;
+  padding: 6px 12px;
+  background-color: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.check-availability-page-number.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* ========== Modal ========== */
+.ca-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ca-modal {
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.ca-modal h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.ca-modal form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ca-modal form input,
+.ca-modal form select,
+.ca-modal form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.ca-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ca-modal-cancel-btn {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.ca-modal-cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+.ca-modal-confirm-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.ca-modal-confirm-btn:hover {
+  background-color: #218838;
+}
+
+/* ========== Responsiveness ========== */
+@media (max-width: 600px) {
+  .check-availability-dates-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
