@@ -1,49 +1,67 @@
-import React, { useEffect, useRef } from 'react';
+// src/components/Navbar.tsx
+import React, { useEffect, useRef, ReactNode } from 'react';
 import './Navbar.css';
 import { Link, useLocation } from 'react-router-dom';
 
-const Navbar = ({ children }) => {
-  const sidebarRef = useRef(null);
-  const overlayRef = useRef(null);
+interface DummySearchItem {
+  reservation_id: string;
+  guest_name: string;
+  room_number: string;
+  email: string;
+}
+
+declare global {
+  interface Window {
+    toggleDropdown: (event: any, id: string) => void;
+    performLiveSearch: () => void;
+    markNotificationsRead: () => void;
+    toggleSubmenu: (event: any, id: string) => void;
+  }
+}
+
+interface NavbarProps {
+  children?: ReactNode;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ children }) => {
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
 
-  const dummySearchData = [
+  const dummySearchData: DummySearchItem[] = [
     { reservation_id: '340023', guest_name: 'Abdullah Alhammami', room_number: '204', email: 'abdullah@example.com' },
-    { reservation_id: '340024', guest_name: 'John Doe', room_number: '305', email: 'john.doe@example.com' }
+    { reservation_id: '340024', guest_name: 'John Doe',           room_number: '305', email: 'john.doe@example.com' }
   ];
 
   // 1. إغلاق القوائم عند تغيير الصفحة
   useEffect(() => {
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+    document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach(menu => {
       menu.classList.remove('show');
     });
   }, [location]);
 
-  // 2. إغلاق عند النقر خارج القائمة (بتعديل شرط إغلاق القوائم الرئيسية بنفس منطق الأيقونات)
+  // 2. إغلاق عند النقر خارج القائمة
   useEffect(() => {
-    const handleGlobalClick = (event) => {
-      const isOutsideDropdown = !event.target.closest('.dropdown-icon') &&
-                                  !event.target.closest('.dropdown-menu') &&
-                                  !event.target.closest('.dropdown-content');
-      const isOutsideSearch = !event.target.closest('.search-icon');
-      const isOutsideSidebar = !event.target.closest('.sidebar');
+    const handleGlobalClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const isOutsideDropdown = !target.closest('.dropdown-icon')
+                              && !target.closest('.dropdown-menu')
+                              && !target.closest('.dropdown-content');
+      const isOutsideSearch   = !target.closest('.search-icon');
+      const isOutsideSidebar  = !target.closest('.sidebar');
 
       if (isOutsideDropdown) {
-        document.querySelectorAll('.dropdown-content, .dropdown-menu').forEach(menu => {
+        document.querySelectorAll<HTMLElement>('.dropdown-content, .dropdown-menu').forEach(menu => {
           menu.classList.remove('show');
         });
       }
-
       if (isOutsideSearch) {
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-          searchInput.style.display = "none";
-        }
+        const input = document.getElementById('searchInput') as HTMLInputElement | null;
+        if (input) input.style.display = 'none';
       }
-
       if (isOutsideSidebar) {
-        document.querySelectorAll('.submenu').forEach(menu => menu.classList.remove('show'));
-        document.querySelectorAll('.sidebar ul > li').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll<HTMLElement>('.submenu').forEach(menu => menu.classList.remove('show'));
+        document.querySelectorAll<HTMLElement>('.sidebar ul > li').forEach(item => item.classList.remove('active'));
       }
     };
     document.addEventListener('click', handleGlobalClick);
@@ -52,13 +70,13 @@ const Navbar = ({ children }) => {
 
   // 3. فتح القوائم المنسدلة من النيفيقيشن
   useEffect(() => {
-    document.querySelectorAll('.nav ul li > a').forEach(item => {
-      item.addEventListener('click', function (event) {
-        if (this.getAttribute('href') === '#') {
-          event.preventDefault();
-          const dropdown = this.nextElementSibling;
+    document.querySelectorAll<HTMLAnchorElement>('.nav ul li > a').forEach(link => {
+      link.addEventListener('click', e => {
+        if (link.getAttribute('href') === '#') {
+          e.preventDefault();
+          const dropdown = link.nextElementSibling as HTMLElement | null;
           if (!dropdown) return;
-          document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach(menu => {
             if (menu !== dropdown) menu.classList.remove('show');
           });
           dropdown.classList.toggle('show');
@@ -67,41 +85,41 @@ const Navbar = ({ children }) => {
     });
   }, []);
 
-  // 4. دمج تعريف الدوال وإضافة مستمعين للنقر داخل useEffect واحد
+  // 4. دمج تعريف الدوال وإضافة مستمعين
   useEffect(() => {
-    // دالة تبديل القوائم المنسدلة
-    window.toggleDropdown = (event, id) => {
+    // toggleDropdown
+    window.toggleDropdown = (event: any, id: string) => {
       event.stopPropagation();
       const dropdown = document.getElementById(id);
       if (!dropdown) return;
-      document.querySelectorAll('.dropdown-content').forEach(menu => {
+      document.querySelectorAll<HTMLElement>('.dropdown-content').forEach(menu => {
         if (menu !== dropdown) menu.classList.remove('show');
       });
       dropdown.classList.toggle('show');
     };
 
-    // مستمع للنقر على أيقونات القائمة المنسدلة
-    document.querySelectorAll('.dropdown-icon').forEach(icon => {
-      icon.addEventListener('click', function (event) {
-        window.toggleDropdown(event, this.nextElementSibling?.id);
+    // dropdown-icon click
+    document.querySelectorAll<HTMLElement>('.dropdown-icon').forEach(icon => {
+      icon.addEventListener('click', e => {
+        window.toggleDropdown(e, (icon.nextElementSibling as HTMLElement)?.id || '');
       });
     });
 
-    // خاصية البحث
+    // performLiveSearch
     window.performLiveSearch = () => {
-      const input = document.getElementById('searchInput')?.value.toLowerCase();
-      const tbody = document.querySelector('#searchResultsTable tbody');
-      if (!input || !tbody) return;
+      const val = (document.getElementById('searchInput') as HTMLInputElement)?.value.toLowerCase() || '';
+      const tbody = document.querySelector('#searchResultsTable tbody') as HTMLTableSectionElement | null;
+      if (!tbody) return;
       tbody.innerHTML = '';
 
       const filtered = dummySearchData.filter(item =>
-        item.reservation_id.includes(input) ||
-        item.guest_name.toLowerCase().includes(input) ||
-        item.room_number.includes(input) ||
-        item.email.toLowerCase().includes(input)
+        item.reservation_id.includes(val) ||
+        item.guest_name.toLowerCase().includes(val) ||
+        item.room_number.includes(val) ||
+        item.email.toLowerCase().includes(val)
       );
 
-      if (filtered.length > 0) {
+      if (filtered.length) {
         filtered.forEach(item => {
           const row = document.createElement('tr');
           row.innerHTML = `
@@ -120,57 +138,39 @@ const Navbar = ({ children }) => {
       }
     };
 
-    // Notifications
+    // markNotificationsRead
     window.markNotificationsRead = () => {
-      document.querySelectorAll('#notificationsDropdown .status').forEach(status => {
+      document.querySelectorAll<HTMLElement>('#notificationsDropdown .status').forEach(status => {
         status.textContent = 'Read';
       });
       alert('All notifications marked as read.');
     };
 
-    // Sidebar toggle (غير مستخدمة بشكل مباشر لكن يمكن استخدامها لاحقاً)
-    const handleSidebarToggle = () => {
-      const sidebar = sidebarRef.current;
-      const overlay = overlayRef.current;
-      if (!sidebar || !overlay) return;
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('show');
-      if (!sidebar.classList.contains('open')) {
-        closeAllSubmenus();
-      }
-    };
-
-    const closeAllSubmenus = () => {
-      document.querySelectorAll('.submenu').forEach(menu => menu.classList.remove('show'));
-      document.querySelectorAll('.sidebar ul > li').forEach(item => item.classList.remove('active'));
-    };
-
-    // Submenu toggler
-    window.toggleSubmenu = (event, id) => {
+    // toggleSubmenu
+    window.toggleSubmenu = (event: any, id: string) => {
       event.stopPropagation();
       const submenu = document.getElementById(id);
       if (!submenu) return;
-      const parentLi = event.currentTarget;
+      const parentLi = event.currentTarget as HTMLElement;
 
-      document.querySelectorAll('.submenu').forEach(menu => {
+      document.querySelectorAll<HTMLElement>('.submenu').forEach(menu => {
         if (menu !== submenu) {
           menu.classList.remove('show');
-          if (menu.parentElement) menu.parentElement.classList.remove('active');
+          menu.parentElement?.classList.remove('active');
         }
       });
 
       submenu.classList.toggle('show');
       parentLi.classList.toggle('active');
     };
-  }, []);
+  }, [dummySearchData]);
 
   return (
     <>
       {/* Sidebar */}
       <div className="sidebar" id="sidebar" ref={sidebarRef}>
         <ul>
-          {/* Arrivals */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'arrivals')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'arrivals')}>
             <i className="fas fa-walking"></i> Arrivals
           </li>
           <ul className="submenu" id="arrivals">
@@ -179,8 +179,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">VIP Handling</a></li>
           </ul>
 
-          {/* In-House Customers */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'inHouse')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'inHouse')}>
             <i className="fas fa-house-user"></i> In-House Customers
           </li>
           <ul className="submenu" id="inHouse">
@@ -189,8 +188,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Track Guest Requests & Special Services</a></li>
           </ul>
 
-          {/* Accounts */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'accounts')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'accounts')}>
             <i className="fas fa-file-alt"></i> Accounts
           </li>
           <ul className="submenu" id="accounts">
@@ -199,8 +197,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Advance Deposits</a></li>
           </ul>
 
-          {/* Room Assignment */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'roomAssignment')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'roomAssignment')}>
             <i className="fas fa-bed"></i> Room Assignment
           </li>
           <ul className="submenu" id="roomAssignment">
@@ -209,8 +206,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Reassign Rooms</a></li>
           </ul>
 
-          {/* Guest Management */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'guestManagement')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'guestManagement')}>
             <i className="fas fa-users"></i> Guest Management
           </li>
           <ul className="submenu" id="guestManagement">
@@ -219,8 +215,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Blacklist & Restrictions</a></li>
           </ul>
 
-          {/* Billing & Payments */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'billingPayments')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'billingPayments')}>
             <i className="fas fa-credit-card"></i> Billing & Payments
           </li>
           <ul className="submenu" id="billingPayments">
@@ -228,8 +223,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Split Bills & Refunds</a></li>
           </ul>
 
-          {/* Reports & Analytics */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'reports')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'reports')}>
             <i className="fas fa-chart-line"></i> Reports & Analytics
           </li>
           <ul className="submenu" id="reports">
@@ -239,8 +233,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">End-of-Day Reports</a></li>
           </ul>
 
-          {/* Guest Requests */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'guestRequests')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'guestRequests')}>
             <i className="fas fa-concierge-bell"></i> Guest Requests
           </li>
           <ul className="submenu" id="guestRequests">
@@ -249,8 +242,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Transport Requests</a></li>
           </ul>
 
-          {/* Staff Management */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'staffManagement')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'staffManagement')}>
             <i className="fas fa-user-tie"></i> Staff Management
           </li>
           <ul className="submenu" id="staffManagement">
@@ -258,8 +250,7 @@ const Navbar = ({ children }) => {
             <li><a href="#">Role Management & Performance Tracking</a></li>
           </ul>
 
-          {/* Check-In & Out */}
-          <li className="toggle-submenu" onClick={(event) => window.toggleSubmenu(event, 'checkOut')}>
+          <li className="toggle-submenu" onClick={e => window.toggleSubmenu(e, 'checkOut')}>
             <i className="fas fa-door-open"></i> Check-In & Out
           </li>
           <ul className="submenu" id="checkOut">
@@ -271,22 +262,26 @@ const Navbar = ({ children }) => {
       </div>
 
       {/* Overlay for Sidebar */}
-      <div className="overlay" id="overlay" ref={overlayRef} onClick={() => {
-        if (sidebarRef.current && overlayRef.current) {
-          sidebarRef.current.classList.toggle("open");
-          overlayRef.current.classList.toggle("show");
-        }
-      }}></div>
+      <div
+        className="overlay"
+        id="overlay"
+        ref={overlayRef}
+        onClick={() => {
+          sidebarRef.current?.classList.toggle('open');
+          overlayRef.current?.classList.toggle('show');
+        }}
+      ></div>
 
       {/* Header Section */}
       <header className="header">
         <div className="header-left">
-          <span className="menu-icon" onClick={() => {
-            if (sidebarRef.current && overlayRef.current) {
-              sidebarRef.current.classList.toggle("open");
-              overlayRef.current.classList.toggle("show");
-            }
-          }}>
+          <span
+            className="menu-icon"
+            onClick={() => {
+              sidebarRef.current?.classList.toggle('open');
+              overlayRef.current?.classList.toggle('show');
+            }}
+          >
             <i className="fas fa-bars"></i>
           </span>
           <div className="logo">OperaVIP</div>
@@ -354,15 +349,22 @@ const Navbar = ({ children }) => {
           </nav>
           <div className="icons">
             <div className="icon-container">
-              <span className="icon search-icon" onClick={() => {
-                const searchInput = document.getElementById("searchInput");
-                if (searchInput) {
-                  searchInput.style.display = searchInput.style.display === "none" ? "block" : "none";
-                }
-              }}>
+              <span
+                className="icon search-icon"
+                onClick={() => {
+                  const input = document.getElementById('searchInput') as HTMLInputElement | null;
+                  if (input) input.style.display = input.style.display === 'none' ? 'block' : 'none';
+                }}
+              >
                 <i className="fas fa-search"></i>
               </span>
-              <input type="text" id="searchInput" placeholder="Enter search term..." onKeyUp={() => window.performLiveSearch()} style={{ display: "none" }} />
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Enter search term..."
+                onKeyUp={() => window.performLiveSearch()}
+                style={{ display: 'none' }}
+              />
               <div className="dropdown-content" id="searchDropdown">
                 <h4>Search Reservations</h4>
                 <table id="searchResultsTable">
@@ -375,8 +377,7 @@ const Navbar = ({ children }) => {
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                  </tbody>
+                  <tbody />
                 </table>
               </div>
             </div>
@@ -472,11 +473,7 @@ const Navbar = ({ children }) => {
           </div>
         </div>
       </header>
-      {children && (
-        <main className="main-content">
-          {children}
-        </main>
-      )}
+      {children && <main className="main-content">{children}</main>}
     </>
   );
 };

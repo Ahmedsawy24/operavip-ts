@@ -1,22 +1,28 @@
-// 📁 Homepage/Dashboard.jsx
-import React, { useEffect } from 'react';
+// src/Homepage/Dashboard.tsx
+import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import './Dashboard.css';
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
+  // مراجع لتخزين مثيلات Chart
+  const pieChartRef = useRef<Chart | null>(null);
+  const barChartRef = useRef<Chart | null>(null);
+
   useEffect(() => {
-    // رسم بياني دائري (Occupancy)
-    const pieCanvas = document.getElementById("pieChart");
-    if (pieCanvas) {
-      const pieCtx = pieCanvas.getContext("2d");
-      new Chart(pieCtx, {
-        type: "pie",
+    // 1. رسم بياني دائري (Occupancy)
+    const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement | null;
+    const pieCtx = pieCanvas?.getContext('2d');
+    if (pieCtx) {
+      // دمر الرسم السابق إذا وجد
+      pieChartRef.current?.destroy();
+      pieChartRef.current = new Chart(pieCtx, {
+        type: 'pie',
         data: {
-          labels: ["Occupied", "Vacant", "Blocked"],
+          labels: ['Occupied', 'Vacant', 'Blocked'],
           datasets: [
             {
               data: [72, 23, 5],
-              backgroundColor: ["#ff4d4d", "#4dff4d", "#a6a6a6"],
+              backgroundColor: ['#ff4d4d', '#4dff4d', '#a6a6a6'],
             },
           ],
         },
@@ -26,25 +32,26 @@ const Dashboard = () => {
         },
       });
     }
-    
-    // رسم بياني عمودي (Weekly Occupancy)
-    const barCanvas = document.getElementById("barChart");
-    if (barCanvas) {
-      const barCtx = barCanvas.getContext("2d");
-      new Chart(barCtx, {
-        type: "bar",
+
+    // 2. رسم بياني عمودي (Weekly Occupancy)
+    const barCanvas = document.getElementById('barChart') as HTMLCanvasElement | null;
+    const barCtx = barCanvas?.getContext('2d');
+    if (barCtx) {
+      barChartRef.current?.destroy();
+      barChartRef.current = new Chart(barCtx, {
+        type: 'bar',
         data: {
-          labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+          labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
           datasets: [
             {
-              label: "Occupied",
+              label: 'Occupied',
               data: [45, 50, 40, 55, 60, 48, 52],
-              backgroundColor: "#ff4d4d",
+              backgroundColor: '#ff4d4d',
             },
             {
-              label: "Vacant",
+              label: 'Vacant',
               data: [15, 10, 20, 5, 0, 12, 8],
-              backgroundColor: "#4dff4d",
+              backgroundColor: '#4dff4d',
             },
           ],
         },
@@ -62,47 +69,50 @@ const Dashboard = () => {
         },
       });
     }
-    
-    // منطق التابات
-    const tabButtons = document.querySelectorAll(".tab-btn");
-    const tabContents = document.querySelectorAll(".tab-content");
 
-    tabButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        tabButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        tabContents.forEach((tc) => (tc.style.display = "none"));
-        const targetTab = btn.getAttribute("data-tab");
-        const targetElement = document.getElementById(targetTab);
-        if (targetElement) {
-          targetElement.style.display = "block";
-        }
-      });
+    // 3. منطق التابات
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+    const tabContents = document.querySelectorAll<HTMLElement>('.tab-content');
+    tabButtons.forEach(btn => {
+      const handler = () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        tabContents.forEach(tc => (tc.style.display = 'none'));
+        const targetTab = btn.getAttribute('data-tab');
+        const targetElement = targetTab ? document.getElementById(targetTab) : null;
+        if (targetElement) targetElement.style.display = 'block';
+      };
+      btn.addEventListener('click', handler);
+      // cleanup later
+      btn.dataset['handler'] = ''; // marker
     });
 
-    // منطق المودال (تفاصيل الحجز)
-    const modal = document.getElementById("reservationModal");
-    const closeBtn = document.querySelector(".close-btn");
-    const viewDetailsButtons = document.querySelectorAll(".view-details");
+    // 4. منطق المودال (تفاصيل الحجز)
+    const modal = document.getElementById('reservationModal') as HTMLElement | null;
+    const closeBtn = document.querySelector<HTMLElement>('.close-btn');
+    const viewDetailsButtons = document.querySelectorAll<HTMLButtonElement>('.view-details');
 
-    viewDetailsButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        if (modal) modal.style.display = "block";
+    const openModal = () => { if (modal) modal.style.display = 'block'; };
+    const closeModal = () => { if (modal) modal.style.display = 'none'; };
+    const outsideClick = (e: MouseEvent) => { if (modal && e.target === modal) modal.style.display = 'none'; };
+
+    viewDetailsButtons.forEach(btn => btn.addEventListener('click', openModal));
+    closeBtn?.addEventListener('click', closeModal);
+    window.addEventListener('click', outsideClick);
+
+    // Cleanup
+    return () => {
+      pieChartRef.current?.destroy();
+      barChartRef.current?.destroy();
+      viewDetailsButtons.forEach(btn => btn.removeEventListener('click', openModal));
+      closeBtn?.removeEventListener('click', closeModal);
+      window.removeEventListener('click', outsideClick);
+      // إزالة مستمعي التابات
+      tabButtons.forEach(btn => {
+        const clone = btn.cloneNode(true) as HTMLButtonElement;
+        btn.parentNode?.replaceChild(clone, btn);
       });
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", function () {
-        if (modal) modal.style.display = "none";
-      });
-    }
-
-    window.addEventListener("click", function (event) {
-      if (modal && event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
+    };
   }, []);
 
   return (
@@ -189,7 +199,7 @@ const Dashboard = () => {
               </div>
 
               {/* جدول Arrival */}
-              <div className="tab-content" id="arrivalTab" style={{ display: "block" }}>
+              <div className="tab-content" id="arrivalTab" style={{ display: 'block' }}>
                 <table className="reservations-table">
                   <thead>
                     <tr>
