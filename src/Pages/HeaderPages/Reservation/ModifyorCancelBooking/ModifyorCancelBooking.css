@@ -2,18 +2,21 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #808080; /* خلفية رمادية */
+  background-color: #ffffff;
 }
 
 /* ====== Header & Sidebar Styles (من المفترض أنها تديرها صفحة Navbar) ====== */
 
 /* ====== Main Container ====== */
 .mcb-main-container {
-  margin-left: 250px; /* لتفادي تغطية المحتوى بالسايد بار */
-  padding: 80px 20px 20px 20px;
+  /* أزلنا الـ margin-left حتى يبدأ المحتوى من أقصى اليسار */
+  margin-left: 0;
+  /* أضفنا padding علوي لعدم تداخل المحتوى مع الهيدر */
+  padding: 100px 20px 20px;
   background-color: #f2f2f2;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px); /* يأخذ كامل ارتفاع الشاشة ناقص الهيدر */
   box-sizing: border-box;
+  width: 100%; /* عرض كامل */
 }
 
 /* ====== Page Header & Breadcrumb ====== */
@@ -22,6 +25,7 @@ body {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
+  text-align: center;
 }
 .mcb-page-header h1 {
   margin: 0;
@@ -153,8 +157,9 @@ body {
 }
 .mcb-modal {
   background-color: #fff;
+  /* نجعل المودال يمتد تقريباً لكامل عرض الشاشة مع حد أقصى */
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   max-height: 80vh;
   overflow-y: auto;
   border-radius: 8px;
@@ -232,10 +237,12 @@ body {
   .mcb-form-row {
     flex-direction: column;
   }
-  .mcb-main-container {
-    margin-left: 0;
-  }
-  .mcb-results-table th, .mcb-results-table td {
+  .mcb-results-table th,
+  .mcb-results-table td {
     font-size: 12px;
+  }
+  /* للتأكد من عرض العناصر كاملة على الشاشات الصغيرة */
+  .mcb-main-container {
+    padding: 100px 10px 10px;
   }
 }

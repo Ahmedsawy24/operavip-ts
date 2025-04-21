@@ -1,24 +1,38 @@
-import React, { useEffect } from 'react';
+// src/Pages/HeaderPages/Reservation/CreateNewReservation/CreateNewReservation.tsx
+import React, { useEffect, MouseEvent } from 'react';
 import './CreateNewReservation.css';
 
-const CreateNewReservation = () => {
+const CreateNewReservation: React.FC = () => {
   useEffect(() => {
     // ====== 1. Check Room Availability Section ======
-    const searchRoomsBtn = document.getElementById('cnr-searchRoomsBtn');
-    const resetAvailabilityBtn = document.getElementById('cnr-resetAvailabilityBtn');
-    const roomsListSection = document.getElementById('cnr-roomsListSection');
-    const roomsTbody = document.getElementById('cnr-roomsTbody');
+    const searchRoomsBtn = document.getElementById(
+      'cnr-searchRoomsBtn'
+    ) as HTMLButtonElement | null;
+    const resetAvailabilityBtn = document.getElementById(
+      'cnr-resetAvailabilityBtn'
+    ) as HTMLButtonElement | null;
+    const roomsListSection = document.getElementById(
+      'cnr-roomsListSection'
+    ) as HTMLElement | null;
+    const roomsTbody = document.getElementById(
+      'cnr-roomsTbody'
+    ) as HTMLTableSectionElement | null;
 
     if (searchRoomsBtn) {
       searchRoomsBtn.addEventListener('click', () => {
-        const checkInDate = document.getElementById('cnr-checkInDate').value;
-        const checkOutDate = document.getElementById('cnr-checkOutDate').value;
+        const checkInDate = (
+          document.getElementById('cnr-checkInDate') as HTMLInputElement
+        ).value;
+        const checkOutDate = (
+          document.getElementById('cnr-checkOutDate') as HTMLInputElement
+        ).value;
+
         if (!checkInDate || !checkOutDate || checkOutDate < checkInDate) {
-          alert("⚠️ Please select a valid check-in/check-out date range.");
+          alert('⚠️ Please select a valid check-in/check-out date range.');
           return;
         }
-        // منطق البحث عن الغرف المتاحة (Demo)
-        alert("Searching for available rooms (demo).");
+
+        alert('Searching for available rooms (demo).');
         if (roomsListSection) roomsListSection.style.display = 'block';
         if (roomsTbody) {
           roomsTbody.innerHTML = `
@@ -45,76 +59,112 @@ const CreateNewReservation = () => {
 
     if (resetAvailabilityBtn) {
       resetAvailabilityBtn.addEventListener('click', () => {
-        document.getElementById('cnr-availabilityForm').reset();
+        const form = document.getElementById(
+          'cnr-availabilityForm'
+        ) as HTMLFormElement | null;
+        form?.reset();
         if (roomsListSection) roomsListSection.style.display = 'none';
-        alert("Room availability search reset (demo).");
+        alert('Room availability search reset (demo).');
       });
     }
 
     // ====== 2. Available Rooms List -> Show Guest Details Section ======
-    const roomsTbodyEl = document.getElementById('cnr-roomsTbody');
-    const guestDetailsSection = document.getElementById('cnr-guestDetailsSection');
+    const roomsTbodyEl = document.getElementById(
+      'cnr-roomsTbody'
+    ) as HTMLTableSectionElement | null;
+    const guestDetailsSection = document.getElementById(
+      'cnr-guestDetailsSection'
+    ) as HTMLElement | null;
+
     if (roomsTbodyEl) {
-      roomsTbodyEl.addEventListener('click', (e) => {
-        if (e.target.classList.contains('cnr-select-room-btn')) {
-          alert(`Room selected: ${e.target.parentNode.parentNode.cells[0].textContent} (demo).`);
+      roomsTbodyEl.addEventListener('click', (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target.classList.contains('cnr-select-room-btn')) {
+          const row = target.closest('tr')!;
+          const roomNumber = row.cells[0].textContent;
+          alert(`Room selected: ${roomNumber} (demo).`);
           if (guestDetailsSection) guestDetailsSection.style.display = 'block';
         }
       });
     }
 
     // ====== 3. Guest Details Section ======
-    const saveGuestDetailsBtn = document.getElementById('cnr-saveGuestDetailsBtn');
-    const paymentSection = document.getElementById('cnr-paymentSection');
+    const saveGuestDetailsBtn = document.getElementById(
+      'cnr-saveGuestDetailsBtn'
+    ) as HTMLButtonElement | null;
+    const paymentSection = document.getElementById(
+      'cnr-paymentSection'
+    ) as HTMLElement | null;
+
     if (saveGuestDetailsBtn) {
       saveGuestDetailsBtn.addEventListener('click', () => {
-        const guestName = document.getElementById('cnr-guestName').value.trim();
+        const guestName = (
+          document.getElementById('cnr-guestName') as HTMLInputElement
+        ).value.trim();
         if (!guestName) {
-          alert("⚠️ Please fill all required guest details (Guest Name).");
+          alert(
+            '⚠️ Please fill all required guest details (Guest Name).'
+          );
           return;
         }
-        alert("Guest details saved (demo).");
+        alert('Guest details saved (demo).');
         if (paymentSection) paymentSection.style.display = 'block';
       });
     }
 
     // ====== 4. Payment & Deposit Section ======
-    const processPaymentBtn = document.getElementById('cnr-processPaymentBtn');
-    const payOnCheckInBtn = document.getElementById('cnr-payOnCheckInBtn');
-    const reviewSection = document.getElementById('cnr-reviewSection');
+    const processPaymentBtn = document.getElementById(
+      'cnr-processPaymentBtn'
+    ) as HTMLButtonElement | null;
+    const payOnCheckInBtn = document.getElementById(
+      'cnr-payOnCheckInBtn'
+    ) as HTMLButtonElement | null;
+    const reviewSection = document.getElementById(
+      'cnr-reviewSection'
+    ) as HTMLElement | null;
+
     if (processPaymentBtn) {
       processPaymentBtn.addEventListener('click', () => {
-        alert("✅ Payment processed (demo).");
+        alert('✅ Payment processed (demo).');
         if (reviewSection) reviewSection.style.display = 'block';
       });
     }
     if (payOnCheckInBtn) {
       payOnCheckInBtn.addEventListener('click', () => {
-        alert("🕒 Payment will be made on check-in (demo).");
+        alert('🕒 Payment will be made on check-in (demo).');
         if (reviewSection) reviewSection.style.display = 'block';
       });
     }
 
     // ====== 5. Review & Confirm Reservation Section ======
-    const confirmReservationBtn = document.getElementById('cnr-confirmReservationBtn');
-    const sendConfirmationBtn = document.getElementById('cnr-sendConfirmationBtn');
-    const editReservationBtn = document.getElementById('cnr-editReservationBtn');
+    const confirmReservationBtn = document.getElementById(
+      'cnr-confirmReservationBtn'
+    ) as HTMLButtonElement | null;
+    const sendConfirmationBtn = document.getElementById(
+      'cnr-sendConfirmationBtn'
+    ) as HTMLButtonElement | null;
+    const editReservationBtn = document.getElementById(
+      'cnr-editReservationBtn'
+    ) as HTMLButtonElement | null;
+
     if (confirmReservationBtn) {
       confirmReservationBtn.addEventListener('click', () => {
-        alert("🎟 Reservation confirmed (demo).");
+        alert('🎟 Reservation confirmed (demo).');
       });
     }
     if (sendConfirmationBtn) {
       sendConfirmationBtn.addEventListener('click', () => {
-        alert("📧 Confirmation email sent (demo).");
+        alert('📧 Confirmation email sent (demo).');
       });
     }
     if (editReservationBtn) {
       editReservationBtn.addEventListener('click', () => {
-        alert("✏️ Edit reservation details (demo).");
+        alert('✏️ Edit reservation details (demo).');
       });
     }
-    // يمكنك إضافة تنظيف المستمعين إذا لزم الأمر عند إلغاء تركيب المكون
+
+    // إذا رغبت بإزالة المستمعين عند تفكيك المكوّن، يمكنك إضافة Cleanup هنا:
+    // return () => { /* إزالة جميع event listeners */ };
   }, []);
 
   return (
@@ -224,7 +274,7 @@ const CreateNewReservation = () => {
             </div>
             <div className="cnr-form-group">
               <label htmlFor="cnr-specialRequests">Special Requests</label>
-              <textarea id="cnr-specialRequests" rows="2" placeholder="Any special requests?"></textarea>
+              <textarea id="cnr-specialRequests" rows={2} placeholder="Any special requests?"></textarea>
             </div>
           </div>
           <div className="cnr-form-row">

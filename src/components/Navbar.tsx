@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
 
   const dummySearchData: DummySearchItem[] = [
     { reservation_id: '340023', guest_name: 'Abdullah Alhammami', room_number: '204', email: 'abdullah@example.com' },
-    { reservation_id: '340024', guest_name: 'John Doe',           room_number: '305', email: 'john.doe@example.com' }
+    { reservation_id: '340024', guest_name: 'John Doe', room_number: '305', email: 'john.doe@example.com' }
   ];
 
   // 1. إغلاق القوائم عند تغيير الصفحة
@@ -39,6 +39,18 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       menu.classList.remove('show');
     });
   }, [location]);
+
+  // ✅ الدالة الخاصة بالقوائم المنسدلة في الهيدر فقط
+  const handleDropdownClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const dropdown = (e.currentTarget.nextElementSibling as HTMLElement | null);
+    if (!dropdown) return;
+    document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach(menu => {
+      if (menu !== dropdown) menu.classList.remove('show');
+    });
+    dropdown.classList.toggle('show');
+  };
 
   // 2. إغلاق عند النقر خارج القائمة
   useEffect(() => {
@@ -284,13 +296,13 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
           >
             <i className="fas fa-bars"></i>
           </span>
-          <div className="logo">OperaVIP</div>
+          <Link to="/dashboard" className="logo">OperaVIP</Link>
         </div>
         <div className="nav-icons">
           <nav className="nav">
             <ul>
               <li className="dropdown">
-                <a href="#">Reservations</a>
+              <a href="#" onClick={handleDropdownClick}>Reservations</a>
                 <ul className="dropdown-menu">
                   <li><Link to="/reservations/create">Create New Reservation</Link></li>
                   <li><Link to="/reservations/modify">Modify or Cancel Booking</Link></li>
@@ -300,7 +312,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </ul>
               </li>
               <li className="dropdown">
-                <a href="#">Front Desk</a>
+              <a href="#" onClick={handleDropdownClick}>Front Desk</a>
                 <ul className="dropdown-menu">
                   <li><a href="#">Check-In Guests</a></li>
                   <li><a href="#">Walk-In Reservations</a></li>
@@ -309,7 +321,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </ul>
               </li>
               <li className="dropdown">
-                <a href="#">Cashiering</a>
+              <a href="#" onClick={handleDropdownClick}>Cashiering</a>
                 <ul className="dropdown-menu">
                   <li><a href="#">Payments & Refunds</a></li>
                   <li><a href="#">Guest Folio Adjustments</a></li>
@@ -317,7 +329,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </ul>
               </li>
               <li className="dropdown">
-                <a href="#">Rooms</a>
+              <a href="#" onClick={handleDropdownClick}>Rooms</a>
                 <ul className="dropdown-menu">
                   <li><a href="#">Assign Rooms</a></li>
                   <li><a href="#">Check Room Availability</a></li>
@@ -327,7 +339,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </ul>
               </li>
               <li className="dropdown">
-                <a href="#">AR</a>
+              <a href="#" onClick={handleDropdownClick}>AR</a>
                 <ul className="dropdown-menu">
                   <li><a href="#">Pending Payments</a></li>
                   <li><a href="#">Company Accounts</a></li>
@@ -336,7 +348,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </ul>
               </li>
               <li className="dropdown">
-                <a href="#">End of Day</a>
+              <a href="#" onClick={handleDropdownClick}>End of Day</a>
                 <ul className="dropdown-menu">
                   <li><a href="#">Night Audit Process</a></li>
                   <li><a href="#">Generate Financial Reports</a></li>
@@ -470,6 +482,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </header>

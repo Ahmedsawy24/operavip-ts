@@ -1,12 +1,10 @@
-/* ==================== (B) تنسيقات الصفحة الرئيسية (Dashboard) ==================== */
 
-/* زيادة الفراغ بين الهيدر وعنوان الصفحة */
 .main-container {
     width: 100%;
-    padding-top: 30px;
+    padding-top: 10px;
   }
   
-  /* مقدمة الصفحة */
+ 
   .page-intro {
     text-align: left;
     margin-bottom: 20px;

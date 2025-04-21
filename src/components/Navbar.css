@@ -27,7 +27,8 @@ body {
     font-weight: bold;
     color: #007bff;
     flex-shrink: 0;
-    margin-right: 200px;
+    margin-right: 100px;
+    text-decoration: none;
 }
 
 /* ====== Navigation and Icons Group ====== */
@@ -53,18 +54,33 @@ body {
 
 .nav ul li {
     position: relative;
+    z-index: 1050;
 }
 
-.nav ul li a {
+.nav > ul > li > a {
     text-decoration: none;
     color: #fff;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: bold; /* عناصر الهيدر الرئيسية فقط */
     padding: 10px;
+    font-family: "National Park", sans-serif;
     display: block;
     transition: color 0.3s;
     cursor: pointer;
-}
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal; /* عناصر الهيدر الرئيسية فقط */
+    padding: 10px;
+    font-family: Exo 2, sans-serif;
+    display: block;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  
 
 .nav ul li a:hover {
     color: #007bff;
@@ -234,7 +250,7 @@ body {
 .sidebar {
     position: fixed;
     left: -250px;
-    top: 70px;
+    top: 50px;
     width: 250px;
     height: calc(100% - 60px);
     background-color: #2c3e50;
@@ -248,7 +264,11 @@ body {
 /* فتح السايد بار */
 .sidebar.open {
     left: 0;
-}
+    z-index: 1000;
+    background-color: #2c3e50;
+    opacity: 1;
+  }
+  
 
 /* قوائم السايد بار */
 .sidebar ul {
@@ -390,7 +410,6 @@ body {
 
 .main-content {
     margin-top: 60px; 
-    margin-left: 250px; 
     padding: 20px;
   }
   
