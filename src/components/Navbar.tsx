@@ -2,6 +2,9 @@
 import React, { useEffect, useRef, ReactNode } from 'react';
 import './Navbar.css';
 import { Link, useLocation } from 'react-router-dom';
+import logo from './OperaVIPlogo.png';
+
+
 
 interface DummySearchItem {
   reservation_id: string;
@@ -296,7 +299,9 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
           >
             <i className="fas fa-bars"></i>
           </span>
-          <Link to="/dashboard" className="logo">OperaVIP</Link>
+          <Link to="/dashboard" className="logo">
+           <img src={logo} alt="OperaVIPlogo" className="logo-img" />
+            </Link>
         </div>
         <div className="nav-icons">
           <nav className="nav">
@@ -312,51 +317,55 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 </ul>
               </li>
               <li className="dropdown">
-              <a href="#" onClick={handleDropdownClick}>Front Desk</a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Check-In Guests</a></li>
-                  <li><a href="#">Walk-In Reservations</a></li>
-                  <li><a href="#">Upgrade/Downgrade Room</a></li>
-                  <li><a href="#">Early Check-Out Processing</a></li>
-                </ul>
-              </li>
-              <li className="dropdown">
-              <a href="#" onClick={handleDropdownClick}>Cashiering</a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Payments & Refunds</a></li>
-                  <li><a href="#">Guest Folio Adjustments</a></li>
-                  <li><a href="#">Cashier Closing & Balancing</a></li>
-                </ul>
-              </li>
-              <li className="dropdown">
-              <a href="#" onClick={handleDropdownClick}>Rooms</a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Assign Rooms</a></li>
-                  <li><a href="#">Check Room Availability</a></li>
-                  <li><a href="#">Housekeeping Requests</a></li>
-                  <li><a href="#">Maintenance Requests</a></li>
-                  <li><a href="#">Room Blocking (Out of Order)</a></li>
-                </ul>
-              </li>
-              <li className="dropdown">
-              <a href="#" onClick={handleDropdownClick}>AR</a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Pending Payments</a></li>
-                  <li><a href="#">Company Accounts</a></li>
-                  <li><a href="#">Ledger Reports</a></li>
-                  <li><a href="#">Aging Reports</a></li>
-                </ul>
-              </li>
-              <li className="dropdown">
-              <a href="#" onClick={handleDropdownClick}>End of Day</a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Night Audit Process</a></li>
-                  <li><a href="#">Generate Financial Reports</a></li>
-                  <li><a href="#">Review Daily Transactions</a></li>
-                  <li><a href="#">Close Cashier Sessions</a></li>
-                  <li><a href="#">Post Room & Tax Charges</a></li>
-                </ul>
-              </li>
+  <a href="#" onClick={handleDropdownClick}>Front Desk</a>
+  <ul className="dropdown-menu">
+    <li><Link to="/front-desk/check-in">Check‑In Guests</Link></li>
+    <li><Link to="/front-desk/walk-in">Walk‑In Reservations</Link></li>
+    <li><Link to="/front-desk/upgrade-room">Upgrade/Downgrade Room</Link></li>
+    <li><Link to="/front-desk/early-check-out">Early Check‑Out Processing</Link></li>
+  </ul>
+</li>
+
+<li className="dropdown">
+  <a href="#" onClick={handleDropdownClick}>Cashiering</a>
+  <ul className="dropdown-menu">
+    <li><Link to="/cashiering/payments-refunds">Payments & Refunds</Link></li>
+    <li><Link to="/cashiering/folio-adjustments">Guest Folio Adjustments</Link></li>
+    <li><Link to="/cashiering/closing-balancing">Cashier Closing & Balancing</Link></li>
+  </ul>
+</li>
+
+<li className="dropdown">
+  <a href="#" onClick={handleDropdownClick}>Rooms</a>
+  <ul className="dropdown-menu">
+    <li><Link to="/rooms/assign">Assign Rooms</Link></li>
+    <li><Link to="/rooms/check-availability">Check Room Availability</Link></li>
+    <li><Link to="/rooms/housekeeping-requests">Housekeeping Requests</Link></li>
+    <li><Link to="/rooms/maintenance-requests">Maintenance Requests</Link></li>
+    <li><Link to="/rooms/blocking">Room Blocking (Out of Order)</Link></li>
+  </ul>
+</li>
+
+<li className="dropdown">
+  <a href="#" onClick={handleDropdownClick}>AR</a>
+  <ul className="dropdown-menu">
+    <li><Link to="/ar/pending-payments">Pending Payments</Link></li>
+    <li><Link to="/ar/company-accounts">Company Accounts</Link></li>
+    <li><Link to="/ar/ledger-reports">Ledger Reports</Link></li>
+    <li><Link to="/ar/aging-reports">Aging Reports</Link></li>
+  </ul>
+</li>
+
+<li className="dropdown">
+  <a href="#" onClick={handleDropdownClick}>End of Day</a>
+  <ul className="dropdown-menu">
+    <li><Link to="/end-of-day/night-audit">Night Audit Process</Link></li>
+    <li><Link to="/end-of-day/financial-reports">Generate Financial Reports</Link></li>
+    <li><Link to="/end-of-day/daily-transactions">Review Daily Transactions</Link></li>
+    <li><Link to="/end-of-day/close-sessions">Close Cashier Sessions</Link></li>
+    <li><Link to="/end-of-day/post-charges">Post Room & Tax Charges</Link></li>
+  </ul>
+</li>
             </ul>
           </nav>
           <div className="icons">

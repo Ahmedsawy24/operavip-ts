@@ -13,8 +13,8 @@ body {
 
 /* ====== Main Container ====== */
 .cnr-main-container {
-  margin: 80px 20px 20px 20px; /* بدلاً من auto عشان يمسك من اليمين واليسار */
-  width: calc(100% - 40px); /* عرض الصفحة بالكامل ناقص المارجن */
+  width: 100%;
+  padding-top: 10px; /* عرض الصفحة بالكامل ناقص المارجن */
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;

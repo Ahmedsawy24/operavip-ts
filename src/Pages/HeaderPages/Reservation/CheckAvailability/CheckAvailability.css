@@ -14,7 +14,7 @@ body {
 /* ========== الحاوية الرئيسية للصفحة ========== */
 .check-availability-main-container {
   width: 100%;
-  margin-top: 80px; /* ترك مساحة للهيدر */
+    padding-top: 10px; /* ترك مساحة للهيدر */
   padding: 20px;
   background-color: #fff;
   /* لتغطي العرض الكامل، يمكن إزالة max-width و margin auto */

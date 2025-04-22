@@ -13,8 +13,8 @@ body {
 
 /* ---------- Main Container ---------- */
 .cig-main-container {
-  margin: 80px auto 20px auto;
-  max-width: 1200px;
+  width: 100%;
+    padding-top: 10px;
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;

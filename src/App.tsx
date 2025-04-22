@@ -8,6 +8,11 @@ import ModifyorCancelBooking   from './Pages/HeaderPages/Reservation/ModifyorCan
 import ViewUpcomingReservations from './Pages/HeaderPages/Reservation/ViewUpcomingReservations/ViewUpcomingReservations';
 import CheckAvailability  from './Pages/HeaderPages/Reservation/CheckAvailability/CheckAvailability';
 import GroupReservations from './Pages/HeaderPages/Reservation/GroupReservations/GroupReservations';
+import CheckinGuests from './Pages/HeaderPages/FrontDesk/CheckinGuests/CheckinGuests';
+import WalkInReservations from './Pages/HeaderPages/FrontDesk/WalkInReservations/WalkInReservations';
+import UpgradeDowngradeRoom from './Pages/HeaderPages/FrontDesk/Upgrade-DowngradeRoom/Upgrade-DowngradeRoom';
+import EarlyCheckOutProcessing from './Pages/HeaderPages/FrontDesk/EarlyCheckOutProcessing/EarlyCheckOutProcessing';
+
 
 
 const App: React.FC = () => (
@@ -23,6 +28,10 @@ const App: React.FC = () => (
         <Route path="reservations/upcoming" element={<ViewUpcomingReservations />} />
         <Route path="reservations/check-availability" element={<CheckAvailability />} />
         <Route path="reservations/group-reservations" element={<GroupReservations />} />
+        <Route path="front-desk/check-in" element={<CheckinGuests />} />
+        <Route path="front-desk/walk-in" element={<WalkInReservations />} />
+        <Route path="front-desk/upgrade-room" element={<UpgradeDowngradeRoom />} />
+        <Route path="front-desk/early-check-out" element={<EarlyCheckOutProcessing />} />
 
       
       </Route>
