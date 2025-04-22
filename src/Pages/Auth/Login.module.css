@@ -1,0 +1,76 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #1C1C2D, #212F3D);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 400px;
+    max-width: 90%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  
+  .logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .error {
+    color: #ff4d4f;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #007BFF, #0056D2);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  
+  .button:hover {
+    background: #0056D2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .forgot {
+    display: block;
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: underline;
+    margin-bottom: 25px;
+  }
+  
+  .footer {
+    font-size: 12px;
+    color: #aaa;
+  }
+  

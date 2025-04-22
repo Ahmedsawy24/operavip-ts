@@ -329,7 +329,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
 <li className="dropdown">
   <a href="#" onClick={handleDropdownClick}>Cashiering</a>
   <ul className="dropdown-menu">
-    <li><Link to="/cashiering/payments-refunds">Payments & Refunds</Link></li>
+    <li><Link to="/cashiering/payments">Payments & Refunds</Link></li>
     <li><Link to="/cashiering/folio-adjustments">Guest Folio Adjustments</Link></li>
     <li><Link to="/cashiering/closing-balancing">Cashier Closing & Balancing</Link></li>
   </ul>

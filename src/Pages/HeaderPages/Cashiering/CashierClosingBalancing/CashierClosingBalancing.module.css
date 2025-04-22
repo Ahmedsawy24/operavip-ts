@@ -1,0 +1,102 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.pageHeader h1 { margin:0; font-size:32px; }
+.breadcrumb { margin-top:5px; font-size:14px; color:#777 }
+
+/* Shift Section */
+.shiftSection { margin-bottom:30px; }
+.shiftSection h2 { font-size:24px; text-align:center; margin-bottom:15px; }
+.formRow { display:flex; gap:20px; margin-bottom:15px; }
+.formGroup {
+  flex:1; display:flex; flex-direction:column;
+}
+.formGroup label { font-weight:bold; margin-bottom:5px; }
+.formGroup input, .formGroup select {
+  padding:10px; font-size:14px; border:1px solid #ccc; border-radius:5px;
+}
+.formButtons { text-align:center; }
+.loadBtn {
+  padding:12px 24px; background:#28a745; color:#fff; border:none; border-radius:5px; cursor:pointer;
+}
+.loadBtn:hover { background:#218838; }
+
+/* Transactions Section */
+.transactionsSection { margin-bottom:30px; }
+.transactionsSection h2 { font-size:24px; text-align:center; margin-bottom:15px; }
+.transactionsTable {
+  width:100%; border-collapse:collapse; margin-bottom:20px;
+}
+.transactionsTable thead { background:#007bff; color:#fff; }
+.transactionsTable th, .transactionsTable td {
+  padding:12px; border-bottom:1px solid #ddd; text-align:left; font-size:14px;
+}
+.totalRow td { font-weight:bold; }
+.transactionsTable tr:hover { background:#f2f2f2; }
+
+/* Cash Section */
+.cashSection { margin-bottom:30px; }
+.cashSection h2 { font-size:24px; text-align:center; margin-bottom:15px; }
+.cashSection .formRow { display:flex; gap:20px; margin-bottom:15px; }
+.cashSection .formGroup input[readonly] { background:#e9ecef; }
+
+/* Non-Cash Section */
+.noncashSection { margin-bottom:30px; }
+.noncashSection h2 { font-size:24px; text-align:center; margin-bottom:15px; }
+.noncashTable {
+  width:100%; border-collapse:collapse; margin-bottom:20px;
+}
+.noncashTable thead { background:#007bff; color:#fff; }
+.noncashTable th, .noncashTable td {
+  padding:12px; border-bottom:1px solid #ddd; text-align:left; font-size:14px;
+}
+.noncashTable tr:hover { background:#f2f2f2; }
+
+/* Remarks */
+.remarksSection { margin-bottom:30px; }
+.remarksSection h2 { font-size:24px; text-align:center; margin-bottom:15px; }
+.remarksSection textarea {
+  width:100%; padding:10px; font-size:14px; border:1px solid #ccc; border-radius:5px; resize:vertical;
+}
+
+/* Confirm */
+.confirmContainer { text-align:center; margin-top:20px; }
+.confirmBtn {
+  padding:14px 28px; background:#28a745; color:#fff; border:none; border-radius:5px; cursor:pointer;
+}
+.confirmBtn:hover { background:#218838; }
+
+/* Modal */
+.modalOverlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000;
+}
+.modal {
+  background:#fff; padding:20px; border-radius:8px; max-width:600px; width:90%; box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+.modal h2 { margin-top:0; font-size:22px; margin-bottom:15px; }
+.modalContent p { margin:8px 0; font-size:14px; }
+.modalButtons {
+  display:flex; justify-content:flex-end; gap:10px; margin-top:20px;
+}
+.modalCancelBtn, .modalConfirmBtn {
+  padding:8px 12px; border:none; border-radius:4px; cursor:pointer; font-size:14px;
+}
+.modalCancelBtn { background:#6c757d; color:#fff; }
+.modalCancelBtn:hover { background:#5a6268; }
+.modalConfirmBtn { background:#28a745; color:#fff; }
+.modalConfirmBtn:hover { background:#218838; }
+
+/* Responsive */
+@media (max-width:600px) {
+  .formRow { flex-direction:column; }
+}
