@@ -1,0 +1,177 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.pageHeader h1 {
+  font-size: 32px;
+  color: #000;
+}
+.breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+.searchSection {
+  margin-bottom: 30px;
+}
+.searchSection h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.searchForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.formRow {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.formGroup {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.formGroup input,
+.formGroup select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.formButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.searchBtn, .resetBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.searchBtn {
+  background-color: #28a745;
+  color: #fff;
+}
+.searchBtn:hover {
+  background-color: #218838;
+}
+.resetBtn {
+  background-color: #6c757d;
+  color: #fff;
+}
+.resetBtn:hover {
+  background-color: #5a6268;
+}
+.availableRoomsSection {
+  margin-bottom: 30px;
+}
+.availableRoomsSection h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #000;
+}
+.roomsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.roomsTable thead {
+  background: #007bff;
+  color: #fff;
+}
+.roomsTable th, .roomsTable td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.roomsTable tr:hover {
+  background: #f2f2f2;
+}
+.statusGreen {
+  color: green;
+  font-weight: bold;
+}
+.statusYellow {
+  color: orange;
+  font-weight: bold;
+}
+.noRoomsAlert {
+  margin-top: 15px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+.summarySection {
+  margin-bottom: 30px;
+}
+.summarySection h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #000;
+}
+.summaryTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.summaryTable thead {
+  background: #007bff;
+  color: #fff;
+}
+.summaryTable th, .summaryTable td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.summaryTable tr:hover {
+  background: #f2f2f2;
+}
+.proceedSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.proceedBtn, .searchAgainBtn {
+  margin: 5px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #fff;
+  background: #28a745;
+  cursor: pointer;
+}
+.proceedBtn:hover, .searchAgainBtn:hover {
+  background: #218838;
+}
+.selectedRow {
+  background: #e0f7fa !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .formRow {
+    flex-direction: column;
+  }
+  .mainContainer {
+    margin: 80px 10px 20px;
+  }
+}

@@ -1,0 +1,162 @@
+/* src/Pages/HeaderPages/Rooms/AssignRooms/AssignRooms.module.css */
+
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.pageHeader h1 {
+  font-size: 32px;
+  color: #000;
+}
+.breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.searchSection {
+  margin-bottom: 30px;
+}
+.searchSection h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #000;
+}
+.searchForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.formRow {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.formGroup {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+.formGroup.fullWidth {
+  flex: 1 1 100%;
+}
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.formButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.searchBtn, .resetBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.searchBtn {
+  background: #28a745; color: #fff;
+}
+.searchBtn:hover {
+  background: #218838;
+}
+.resetBtn {
+  background: #6c757d; color: #fff;
+}
+.resetBtn:hover {
+  background: #5a6268;
+}
+
+.reservationsListSection {
+  margin-bottom: 30px;
+}
+.unassignedTable,
+.roomsTable,
+.assignedTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.unassignedTable thead,
+.roomsTable thead,
+.assignedTable thead {
+  background: #007bff;
+  color: #fff;
+}
+.unassignedTable th, .unassignedTable td,
+.roomsTable th, .roomsTable td,
+.assignedTable th, .assignedTable td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+.unassignedTable tr:hover,
+.roomsTable tr:hover,
+.assignedTable tr:hover {
+  background: #f2f2f2;
+}
+.selectedRow {
+  background: #e0f7fa !important;
+}
+
+.availableRoomsSection,
+.assignRoomSection {
+  margin-bottom: 30px;
+  display: none;
+}
+.statusGreen { color: green;  font-weight: bold; }
+.statusYellow{ color: orange; font-weight: bold; }
+
+.assignForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.assignBtn {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.assignBtn:hover {
+  background: #218838;
+}
+.cancelBtn {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cancelBtn:hover {
+  background: #c82333;
+}
+
+.assignedSummarySection {
+  margin-bottom: 30px;
+}

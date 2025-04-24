@@ -1,0 +1,117 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader { text-align: center; margin-bottom: 20px; }
+.breadcrumb { font-size: 14px; color: #777; margin-top: 5px; }
+
+.criteriaSection, .reportsListSection, .summarySection {
+  margin-bottom: 30px;
+}
+.criteriaSection h2, .reportsListSection h2, .summarySection h2 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.form { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+.formRow { display: flex; gap: 15px; flex-wrap: wrap; width: 100%; }
+.formGroup { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
+.formGroup label { font-weight: bold; margin-bottom: 5px; }
+.formGroup input, .formGroup select {
+  padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px;
+}
+.formButtons { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+.generateBtn { background: #28a745; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+.generateBtn:hover { background: #218838; }
+.resetBtn { background: #6c757d; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+.resetBtn:hover { background: #5a6268; }
+
+.refreshBtn { background: #17a2b8; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; }
+.refreshBtn:hover { background: #138496; }
+
+.reportsTable, .summaryTable {
+  width: 100%; border-collapse: collapse;
+}
+.reportsTable thead, .summaryTable thead {
+  background: #007bff; color: #fff;
+}
+.reportsTable th, .reportsTable td,
+.summaryTable th, .summaryTable td {
+  padding: 12px; border-bottom: 1px solid #ddd; font-size: 14px; text-align: left;
+}
+.reportsTable tr:hover, .summaryTable tr:hover { background: #f2f2f2; }
+
+.actionBtn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.actionBtn:hover {
+  background-color: #5a6268;
+}
+.waitBtn {
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: not-allowed;
+  font-size: 14px;
+}
+
+.waitBtn:hover { background: #e0a800; }
+
+.downloadBtn {
+  background-color: #0dcaf0;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.downloadBtn:hover {
+  background-color: #0bbbe3;
+}
+
+.printBtn {
+  background: #ffc107; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;
+}
+.printBtn:hover { background: #e0a800; }
+.closeBtn {
+  background: #dc3545; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;
+}
+.closeBtn:hover { background: #c82333; }
+
+.reportDetailSection {
+  background: #fafafa; padding: 20px; border-radius: 5px; margin-bottom: 30px;
+}
+.reportDetailContent p { margin: 6px 0; font-size: 14px; }
+.reportButtons { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+
+.statusReady { color: green;  font-weight: bold; }
+.statusProcessing { color: orange; font-weight: bold; }
+
+@media (max-width: 600px) {
+  .mainContainer { margin: 80px 10px 20px; }
+  .reportsTable th, .reportsTable td, .summaryTable th, .summaryTable td { font-size: 12px; }
+  .actionBtn, .waitBtn, .downloadBtn, .printBtn, .closeBtn { font-size: 12px; padding: 4px 8px; }
+}

@@ -17,6 +17,17 @@ import EarlyCheckOutProcessing from './Pages/HeaderPages/FrontDesk/EarlyCheckOut
 import PaymentsRefunds from './Pages/HeaderPages/Cashiering/PaymentsRefunds/PaymentsRefunds';
 import GuestFolioAdjustments from './Pages/HeaderPages/Cashiering/GuestFolioAdjustments/GuestFolioAdjustments';
 import CashierClosingBalancing from './Pages/HeaderPages/Cashiering/CashierClosingBalancing/CashierClosingBalancing';
+import AssignRooms from './Pages/HeaderPages/Rooms/AssignRooms/AssignRooms';
+import CheckRoomAvailability from './Pages/HeaderPages/Rooms/CheckRoomAvailability/CheckRoomAvailability';
+import HousekeepingRequests from './Pages/HeaderPages/Rooms/HousekeepingRequests/HousekeepingRequests';
+import MaintenanceRequests from './Pages/HeaderPages/Rooms/MaintenanceRequests/MaintenanceRequests';
+import RoomBlocking from './Pages/HeaderPages/Rooms/RoomBlocking/RoomBlocking';
+import PendingPayments from './Pages/HeaderPages/AR/PendingPayments/PendingPayments';
+import CompanyAccounts from './Pages/HeaderPages/AR/CompanyAccounts/CompanyAccounts';
+import LedgerReports from './Pages/HeaderPages/AR/LedgerReports/LedgerReports';
+import AgingReports from './Pages/HeaderPages/AR/AgingReports/AgingReports';
+import NightAuditProcess from './Pages/HeaderPages/EndOfDay/NightAuditProcess/NightAuditProcess';
+import GenerateFinancialReports from './Pages/HeaderPages/EndOfDay/GenerateFinancialReports/GenerateFinancialReports';
 
 
 
@@ -42,6 +53,17 @@ const App: React.FC = () => (
       <Route path="cashiering/payments" element={<PaymentsRefunds />} />
       <Route path="cashiering/folio-adjustments" element={<GuestFolioAdjustments />} />
       <Route path="cashiering/closing-balancing" element={<CashierClosingBalancing />} />
+      <Route path="rooms/assign" element={<AssignRooms />} />
+      <Route path="rooms/check-availability" element={<CheckRoomAvailability />} />
+      <Route path="rooms/housekeeping-requests" element={<HousekeepingRequests />} />
+      <Route path="rooms/maintenance-requests" element={<MaintenanceRequests />} />
+      <Route path="rooms/room-blocking" element={<RoomBlocking />} />
+      <Route path="ar/pending-payments" element={<PendingPayments />} />
+      <Route path="ar/company-accounts" element={<CompanyAccounts />} />
+      <Route path="ar/ledger-reports" element={<LedgerReports />} />
+      <Route path="ar/aging-reports" element={<AgingReports />} />
+      <Route path="end-of-day/night-audit" element={<NightAuditProcess />} />
+      <Route path="end-of-day/financial-reports" element={<GenerateFinancialReports />} />
     </Route>
   </Routes>
 </BrowserRouter>

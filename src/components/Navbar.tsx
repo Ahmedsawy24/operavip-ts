@@ -1,10 +1,9 @@
 // src/components/Navbar.tsx
-import React, { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef, ReactNode, useMemo } from 'react';
 import './Navbar.css';
 import { Link, useLocation } from 'react-router-dom';
 import logo from './OperaVIPlogo.png';
-
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 interface DummySearchItem {
   reservation_id: string;
@@ -31,23 +30,22 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
 
-  const dummySearchData: DummySearchItem[] = [
+  // ✅ تم تحويلها إلى useMemo لحل التحذير
+  const dummySearchData: DummySearchItem[] = useMemo(() => [
     { reservation_id: '340023', guest_name: 'Abdullah Alhammami', room_number: '204', email: 'abdullah@example.com' },
     { reservation_id: '340024', guest_name: 'John Doe', room_number: '305', email: 'john.doe@example.com' }
-  ];
+  ], []);
 
-  // 1. إغلاق القوائم عند تغيير الصفحة
   useEffect(() => {
     document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach(menu => {
       menu.classList.remove('show');
     });
   }, [location]);
 
-  // ✅ الدالة الخاصة بالقوائم المنسدلة في الهيدر فقط
   const handleDropdownClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const dropdown = (e.currentTarget.nextElementSibling as HTMLElement | null);
+    const dropdown = e.currentTarget.nextElementSibling as HTMLElement | null;
     if (!dropdown) return;
     document.querySelectorAll<HTMLElement>('.dropdown-menu').forEach(menu => {
       if (menu !== dropdown) menu.classList.remove('show');
@@ -55,15 +53,12 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     dropdown.classList.toggle('show');
   };
 
-  // 2. إغلاق عند النقر خارج القائمة
   useEffect(() => {
     const handleGlobalClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      const isOutsideDropdown = !target.closest('.dropdown-icon')
-                              && !target.closest('.dropdown-menu')
-                              && !target.closest('.dropdown-content');
-      const isOutsideSearch   = !target.closest('.search-icon');
-      const isOutsideSidebar  = !target.closest('.sidebar');
+      const isOutsideDropdown = !target.closest('.dropdown-icon') && !target.closest('.dropdown-menu') && !target.closest('.dropdown-content');
+      const isOutsideSearch = !target.closest('.search-icon');
+      const isOutsideSidebar = !target.closest('.sidebar');
 
       if (isOutsideDropdown) {
         document.querySelectorAll<HTMLElement>('.dropdown-content, .dropdown-menu').forEach(menu => {
@@ -83,7 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     return () => document.removeEventListener('click', handleGlobalClick);
   }, []);
 
-  // 3. فتح القوائم المنسدلة من النيفيقيشن
   useEffect(() => {
     document.querySelectorAll<HTMLAnchorElement>('.nav ul li > a').forEach(link => {
       link.addEventListener('click', e => {
@@ -100,9 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     });
   }, []);
 
-  // 4. دمج تعريف الدوال وإضافة مستمعين
   useEffect(() => {
-    // toggleDropdown
     window.toggleDropdown = (event: any, id: string) => {
       event.stopPropagation();
       const dropdown = document.getElementById(id);
@@ -113,14 +105,12 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       dropdown.classList.toggle('show');
     };
 
-    // dropdown-icon click
     document.querySelectorAll<HTMLElement>('.dropdown-icon').forEach(icon => {
       icon.addEventListener('click', e => {
         window.toggleDropdown(e, (icon.nextElementSibling as HTMLElement)?.id || '');
       });
     });
 
-    // performLiveSearch
     window.performLiveSearch = () => {
       const val = (document.getElementById('searchInput') as HTMLInputElement)?.value.toLowerCase() || '';
       const tbody = document.querySelector('#searchResultsTable tbody') as HTMLTableSectionElement | null;
@@ -153,7 +143,6 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       }
     };
 
-    // markNotificationsRead
     window.markNotificationsRead = () => {
       document.querySelectorAll<HTMLElement>('#notificationsDropdown .status').forEach(status => {
         status.textContent = 'Read';
@@ -161,7 +150,6 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       alert('All notifications marked as read.');
     };
 
-    // toggleSubmenu
     window.toggleSubmenu = (event: any, id: string) => {
       event.stopPropagation();
       const submenu = document.getElementById(id);
@@ -304,70 +292,72 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
             </Link>
         </div>
         <div className="nav-icons">
-          <nav className="nav">
-            <ul>
-              <li className="dropdown">
-              <a href="#" onClick={handleDropdownClick}>Reservations</a>
-                <ul className="dropdown-menu">
-                  <li><Link to="/reservations/create">Create New Reservation</Link></li>
-                  <li><Link to="/reservations/modify">Modify or Cancel Booking</Link></li>
-                  <li><Link to="/reservations/upcoming">View Upcoming Reservations</Link></li>
-                  <li><Link to="/reservations/check-availability">Check Availability</Link></li>
-                  <li><Link to="/reservations/group-reservations">Group Reservations</Link></li>
-                </ul>
-              </li>
-              <li className="dropdown">
-  <a href="#" onClick={handleDropdownClick}>Front Desk</a>
-  <ul className="dropdown-menu">
-    <li><Link to="/front-desk/check-in">Check‑In Guests</Link></li>
-    <li><Link to="/front-desk/walk-in">Walk‑In Reservations</Link></li>
-    <li><Link to="/front-desk/upgrade-room">Upgrade/Downgrade Room</Link></li>
-    <li><Link to="/front-desk/early-check-out">Early Check‑Out Processing</Link></li>
-  </ul>
-</li>
+        <nav className="nav">
+  <ul>
+    <li className="dropdown">
+      <a href="#" onClick={handleDropdownClick}>Reservations</a>
+      <ul className="dropdown-menu">
+        <li><Link to="/dashboard/reservations/create">Create New Reservation</Link></li>
+        <li><Link to="/dashboard/reservations/modify">Modify or Cancel Booking</Link></li>
+        <li><Link to="/dashboard/reservations/upcoming">View Upcoming Reservations</Link></li>
+        <li><Link to="/dashboard/reservations/check-availability">Check Availability</Link></li>
+        <li><Link to="/dashboard/reservations/group-reservations">Group Reservations</Link></li>
+      </ul>
+    </li>
 
-<li className="dropdown">
-  <a href="#" onClick={handleDropdownClick}>Cashiering</a>
-  <ul className="dropdown-menu">
-    <li><Link to="/cashiering/payments">Payments & Refunds</Link></li>
-    <li><Link to="/cashiering/folio-adjustments">Guest Folio Adjustments</Link></li>
-    <li><Link to="/cashiering/closing-balancing">Cashier Closing & Balancing</Link></li>
-  </ul>
-</li>
+    <li className="dropdown">
+      <a href="#" onClick={handleDropdownClick}>Front Desk</a>
+      <ul className="dropdown-menu">
+        <li><Link to="/dashboard/front-desk/check-in">Check‑In Guests</Link></li>
+        <li><Link to="/dashboard/front-desk/walk-in">Walk‑In Reservations</Link></li>
+        <li><Link to="/dashboard/front-desk/upgrade-room">Upgrade/Downgrade Room</Link></li>
+        <li><Link to="/dashboard/front-desk/early-check-out">Early Check‑Out Processing</Link></li>
+      </ul>
+    </li>
 
-<li className="dropdown">
-  <a href="#" onClick={handleDropdownClick}>Rooms</a>
-  <ul className="dropdown-menu">
-    <li><Link to="/rooms/assign">Assign Rooms</Link></li>
-    <li><Link to="/rooms/check-availability">Check Room Availability</Link></li>
-    <li><Link to="/rooms/housekeeping-requests">Housekeeping Requests</Link></li>
-    <li><Link to="/rooms/maintenance-requests">Maintenance Requests</Link></li>
-    <li><Link to="/rooms/blocking">Room Blocking (Out of Order)</Link></li>
-  </ul>
-</li>
+    <li className="dropdown">
+      <a href="#" onClick={handleDropdownClick}>Cashiering</a>
+      <ul className="dropdown-menu">
+        <li><Link to="/dashboard/cashiering/payments">Payments & Refunds</Link></li>
+        <li><Link to="/dashboard/cashiering/folio-adjustments">Guest Folio Adjustments</Link></li>
+        <li><Link to="/dashboard/cashiering/closing-balancing">Cashier Closing & Balancing</Link></li>
+      </ul>
+    </li>
 
-<li className="dropdown">
-  <a href="#" onClick={handleDropdownClick}>AR</a>
-  <ul className="dropdown-menu">
-    <li><Link to="/ar/pending-payments">Pending Payments</Link></li>
-    <li><Link to="/ar/company-accounts">Company Accounts</Link></li>
-    <li><Link to="/ar/ledger-reports">Ledger Reports</Link></li>
-    <li><Link to="/ar/aging-reports">Aging Reports</Link></li>
-  </ul>
-</li>
+    <li className="dropdown">
+      <a href="#" onClick={handleDropdownClick}>Rooms</a>
+      <ul className="dropdown-menu">
+        <li><Link to="/dashboard/rooms/assign">Assign Rooms</Link></li>
+        <li><Link to="/dashboard/rooms/check-availability">Check Room Availability</Link></li>
+        <li><Link to="/dashboard/rooms/housekeeping-requests">Housekeeping Requests</Link></li>
+        <li><Link to="/dashboard/rooms/maintenance-requests">Maintenance Requests</Link></li>
+        <li><Link to="/dashboard/rooms/room-blocking">Room Blocking (Out of Order)</Link></li>
+      </ul>
+    </li>
 
-<li className="dropdown">
-  <a href="#" onClick={handleDropdownClick}>End of Day</a>
-  <ul className="dropdown-menu">
-    <li><Link to="/end-of-day/night-audit">Night Audit Process</Link></li>
-    <li><Link to="/end-of-day/financial-reports">Generate Financial Reports</Link></li>
-    <li><Link to="/end-of-day/daily-transactions">Review Daily Transactions</Link></li>
-    <li><Link to="/end-of-day/close-sessions">Close Cashier Sessions</Link></li>
-    <li><Link to="/end-of-day/post-charges">Post Room & Tax Charges</Link></li>
+    <li className="dropdown">
+      <a href="#" onClick={handleDropdownClick}>AR</a>
+      <ul className="dropdown-menu">
+        <li><Link to="/dashboard/ar/pending-payments">Pending Payments</Link></li>
+        <li><Link to="/dashboard/ar/company-accounts">Company Accounts</Link></li>
+        <li><Link to="/dashboard/ar/ledger-reports">Ledger Reports</Link></li>
+        <li><Link to="/dashboard/ar/aging-reports">Aging Reports</Link></li>
+      </ul>
+    </li>
+
+    <li className="dropdown">
+      <a href="#" onClick={handleDropdownClick}>End of Day</a>
+      <ul className="dropdown-menu">
+        <li><Link to="/dashboard/end-of-day/night-audit">Night Audit Process</Link></li>
+        <li><Link to="/dashboard/end-of-day/financial-reports">Generate Financial Reports</Link></li>
+        <li><Link to="/dashboard/end-of-day/daily-transactions">Review Daily Transactions</Link></li>
+        <li><Link to="/dashboard/end-of-day/close-sessions">Close Cashier Sessions</Link></li>
+        <li><Link to="/dashboard/end-of-day/post-charges">Post Room & Tax Charges</Link></li>
+      </ul>
+    </li>
   </ul>
-</li>
-            </ul>
-          </nav>
+</nav>
+
           <div className="icons">
             <div className="icon-container">
               <span

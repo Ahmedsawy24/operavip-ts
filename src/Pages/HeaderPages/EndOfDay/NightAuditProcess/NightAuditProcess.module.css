@@ -1,0 +1,114 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader { text-align: center; margin-bottom: 20px; }
+.breadcrumb { font-size: 14px; color: #777; margin-top: 5px; }
+
+.overviewSection, .detailsSection, .summarySection {
+  margin-bottom: 30px;
+}
+.overviewSection h2, .detailsSection h2, .summarySection h2 {
+  font-size: 24px; text-align: center; margin-bottom: 15px; color: #000;
+}
+
+.overviewTable, .detailTable, .summaryTable {
+  width: 100%; border-collapse: collapse;
+}
+.overviewTable thead, .detailTable thead, .summaryTable thead {
+  background: #007bff; color: #fff;
+}
+.overviewTable th, .overviewTable td,
+.detailTable th, .detailTable td,
+.summaryTable th, .summaryTable td {
+  padding: 12px; border-bottom: 1px solid #ddd; font-size: 14px; text-align: left;
+}
+.overviewTable tr:hover, .detailTable tr:hover, .summaryTable tr:hover {
+  background: #f2f2f2;
+}
+
+.statusGreen { color: green;  font-weight: bold; }
+.statusYellow{ color: orange; font-weight: bold; }
+.statusRed   { color: red;    font-weight: bold; }
+
+.actionBtn {
+  background: #6c757d; color: #fff;
+  border: none; padding: 6px 10px;
+  border-radius: 4px; cursor: pointer;
+  font-size: 13px;
+}
+.actionBtn:hover { background: #5a6268; }
+
+.downloadBtn {
+  background: #17a2b8; color: #fff;
+  border: none; padding: 6px 10px;
+  border-radius: 4px; cursor: pointer;
+}
+.downloadBtn:hover { background: #138496; }
+
+.printBtn {
+  background: #ffc107; color: #fff;
+  border: none; padding: 6px 10px;
+  border-radius: 4px; cursor: pointer;
+}
+.printBtn:hover { background: #e0a800; }
+
+.startBtn {
+  background: #28a745; color: #fff;
+  border: none; padding: 14px 28px; font-size: 16px;
+  border-radius: 5px; cursor: pointer;
+}
+.startBtn:hover { background: #218838; }
+.startAudit { text-align: center; margin-top: 20px; }
+
+.detailBlock { margin-bottom: 20px; }
+.detailBlock h3 {
+  font-size: 20px; margin-bottom: 10px; color: #000;
+}
+
+.reportButtons {
+  display: flex; gap: 10px; justify-content: center; margin-top: 10px;
+}
+
+.summaryTable th, .summaryTable td { font-size: 14px; }
+
+.formButtons {
+  display: flex; gap: 10px; justify-content: center; margin-top: 10px;
+}
+.searchBtn {
+  background: #28a745; color: #fff; padding: 10px 20px;
+  border: none; border-radius: 5px; cursor: pointer;
+}
+.resetBtn {
+  background: #6c757d; color: #fff; padding: 10px 20px;
+  border: none; border-radius: 5px; cursor: pointer;
+}
+
+.modalOverlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); display: flex;
+  align-items: center; justify-content: center; z-index: 1000;
+}
+.modalContent {
+  background: #fff; padding: 20px; border-radius: 8px;
+  width: 90%; max-width: 500px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.modalContent h3 { margin-top: 0; }
+.modalBody { margin: 15px 0; }
+.closeBtn {
+  background: #dc3545; color: #fff;
+  border: none; padding: 8px 12px;
+  border-radius: 4px; cursor: pointer;
+}
+.closeBtn:hover { background: #c82333; }
+
+@media (max-width: 600px) {
+  .mainContainer { margin: 80px 10px; }
+  .detailTable th, .detailTable td { font-size: 12px; }
+  .actionBtn, .downloadBtn, .printBtn { font-size: 12px; padding: 4px 8px; }
+  .startBtn { padding: 10px 20px; font-size: 14px; }
+}

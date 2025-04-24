@@ -1,0 +1,47 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader { text-align: center; margin-bottom: 20px; }
+.breadcrumb { font-size: 14px; color: #777; margin-top: 5px; }
+
+.searchSection { margin-bottom: 30px; }
+.form { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+.formRow { display: flex; gap: 15px; flex-wrap: wrap; width: 100%; }
+.formGroup { flex: 1; min-width: 180px; display: flex; flex-direction: column; }
+.formGroup label { font-weight: bold; margin-bottom: 5px; }
+.formGroup input, .formGroup select, .formGroup textarea {
+  padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px;
+}
+.formButtons { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+.searchBtn { background: #28a745; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+.resetBtn  { background: #6c757d; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+
+.paymentsListSection { margin-bottom: 30px; }
+.paymentsTable { width: 100%; border-collapse: collapse; }
+.paymentsTable thead { background: #007bff; color: #fff; }
+.paymentsTable th, .paymentsTable td { padding: 12px; border-bottom: 1px solid #ddd; font-size: 14px; text-align: left; }
+.paymentsTable tr:hover { background: #f2f2f2; }
+.actionBtn { background: #6c757d; color: #fff; padding: 6px 10px; border: none; border-radius: 4px; cursor: pointer; }
+
+.statusUnpaid   { color: red;    font-weight: bold; }
+.statusPartiallyPaid { color: orange; font-weight: bold; }
+.statusOverdue  { color: red;    font-weight: bold; }
+
+.paymentFormSection { background: #fafafa; padding: 20px; border-radius: 5px; margin-bottom: 30px; }
+.submitBtn { background: #28a745; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+.cancelBtn { background: #dc3545; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+
+.summarySection { margin-bottom: 30px; }
+.summaryTable { width: 100%; border-collapse: collapse; }
+.summaryTable thead { background: #007bff; color: #fff; }
+.summaryTable th, .summaryTable td { padding: 12px; border-bottom: 1px solid #ddd; font-size: 14px; text-align: left; }
+
+@media (max-width: 600px) {
+  .formRow { flex-direction: column; }
+  .mainContainer { margin: 80px 10px 20px; }
+}
