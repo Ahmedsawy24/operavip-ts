@@ -28,6 +28,7 @@ import LedgerReports from './Pages/HeaderPages/AR/LedgerReports/LedgerReports';
 import AgingReports from './Pages/HeaderPages/AR/AgingReports/AgingReports';
 import NightAuditProcess from './Pages/HeaderPages/EndOfDay/NightAuditProcess/NightAuditProcess';
 import GenerateFinancialReports from './Pages/HeaderPages/EndOfDay/GenerateFinancialReports/GenerateFinancialReports';
+import RoomsList from './components/RoomsList';
 
 
 
@@ -64,6 +65,7 @@ const App: React.FC = () => (
       <Route path="ar/aging-reports" element={<AgingReports />} />
       <Route path="end-of-day/night-audit" element={<NightAuditProcess />} />
       <Route path="end-of-day/financial-reports" element={<GenerateFinancialReports />} />
+      <Route path="testing" element={<RoomsList />} />
     </Route>
   </Routes>
 </BrowserRouter>
