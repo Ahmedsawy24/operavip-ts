@@ -1,0 +1,208 @@
+.checkInMain {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.breadcrumb {
+  color: #000000;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.filterSection {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInput,
+.datePicker {
+  padding: 8px;
+  font-size: 16px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.applyBtn {
+  padding: 10px 15px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.applyBtn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background: #007bff;
+  color: #fff;
+}
+
+.table tr:hover {
+  background: #f1f1f1;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.confirmed { background: #28a745; color: #fff; }
+.pending   { background: #ffc107; color: #000; }
+.checkedIn { background: #17a2b8; color: #fff; }
+
+/* buttons */
+.viewBtn,
+.checkInBtn,
+.assignBtn {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-right: 5px;
+}
+.viewBtn    { background: #6c757d; color: #fff; }
+.viewBtn:hover    { background: #5a6268; transform: translateY(-1px); }
+.checkInBtn { background: #28a745; color: #fff; }
+.checkInBtn:hover { background: #218838; transform: translateY(-1px); }
+.assignBtn  { background: #17a2b8; color: #fff; margin-right: 0; }
+.assignBtn:hover  { background: #138496; transform: translateY(-1px); }
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+.pages button {
+  margin-right: 5px;
+  padding: 6px 10px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.pages button:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+.pages .activePage {
+  background: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+.modalContent {
+  background: #fff;
+  padding: 20px;
+  width: 60%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.close {
+  position: absolute;
+  right: 15px; top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+.close:hover { color: #000; }
+
+.formRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+.formRow label {
+  min-width: 100px;
+  font-weight: 600;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modalConfirm {
+  background: #28a745;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.modalConfirm:hover { background: #218838; transform: translateY(-1px); }
+
+.modalCancel {
+  background: #dc3545;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.modalCancel:hover { background: #c82333; transform: translateY(-1px); }
+
+/* responsive */
+@media (max-width: 768px) {
+  .modalContent { width: 90%; }
+  .filterSection { flex-direction: column; }
+  .searchInput,
+  .datePicker { width: 80%; }
+  .table th,
+  .table td { font-size: 14px; }
+}

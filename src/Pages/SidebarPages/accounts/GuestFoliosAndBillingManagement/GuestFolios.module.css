@@ -1,0 +1,157 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.searchFilter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInput,
+.selectRoom,
+.datePicker,
+.selectStatus {
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.btnPrimary {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.btnPrimary:hover { background: #0056b3; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.table th {
+  background: #007bff;
+  color: #fff;
+}
+.table tr:hover { background: #f1f1f1; }
+
+/* Badges للحالة */
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 80px;
+  text-align: center;
+}
+.Unpaid   { background-color: #dc3545; color: #fff; }
+.Paid     { background-color: #28a745; color: #fff; }
+.Pending  { background-color: #ffc107; color: #000; }
+
+.btnView,
+.btnPay,
+.btnReprint,
+.btnPayNow {
+  border: none;
+  padding: 6px 12px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.btnView { background: #6c757d; }
+.btnView:hover { background: #5a6268; }
+
+.btnPay { background: #28a745; }
+.btnPay:hover { background: #218838; }
+
+.btnReprint { background: #007bff; }
+.btnReprint:hover { background: #0056b3; }
+
+.btnPayNow { background: #ffc107; color: #000; }
+.btnPayNow:hover { background: #e0a800; }
+
+.pagination {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* مودالات */
+.modal {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%; max-width: 500px;
+  position: relative;
+}
+.close {
+  position: absolute; top: 10px; right: 15px;
+  font-size: 1.5rem; cursor: pointer;
+}
+.inputField,
+.selectPaymentMethod {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 10px;
+  font-size: 1rem;
+}
+.modalActions {
+  margin-top: 15px;
+}
+.btnConfirm {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btnConfirm:hover { background: #218838; }
+.btnCancel {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btnCancel:hover { background: #c82333; }

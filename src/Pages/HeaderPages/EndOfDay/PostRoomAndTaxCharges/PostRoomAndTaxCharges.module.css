@@ -1,0 +1,108 @@
+.mainContainer {
+  width: 100%;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.pageHeader { text-align: center; margin-bottom: 20px; }
+.breadcrumb { font-size:14px; color:#777; margin-top:5px; }
+
+.searchSection,
+.listSection,
+.detailSection,
+.summarySection {
+  margin-bottom: 30px;
+}
+.searchSection h2,
+.listSection h2,
+.detailSection h2,
+.summarySection h2 {
+  font-size:24px; text-align:center; color:#000; margin-bottom:15px;
+}
+
+.form {
+  display:flex; flex-wrap:wrap; gap:15px; justify-content:center;
+}
+.row {
+  display:flex; gap:15px; flex-wrap:wrap; width:100%;
+}
+.group {
+  flex:1; min-width:200px; display:flex; flex-direction:column;
+}
+.group label { font-weight:bold; margin-bottom:5px }
+.group input,
+.group select {
+  padding:10px; font-size:14px; border:1px solid #ccc; border-radius:5px;
+}
+.buttons {
+  display:flex; gap:10px; justify-content:center; margin-top:10px;
+}
+.searchBtn,
+.resetBtn {
+  padding:10px 20px; border:none; border-radius:5px; cursor:pointer;
+}
+.searchBtn { background:#28a745; color:#fff; }
+.searchBtn:hover { background:#218838 }
+.resetBtn { background:#6c757d; color:#fff; }
+.resetBtn:hover { background:#5a6268 }
+
+.refreshBtn {
+  background:#17a2b8; color:#fff; border:none;
+  padding:10px 20px; border-radius:5px; cursor:pointer; margin-bottom:10px;
+}
+.refreshBtn:hover { background:#138496 }
+
+.table,
+.summaryTable {
+  width:100%; border-collapse:collapse;
+}
+.table thead,
+.summaryTable thead {
+  background:#007bff; color:#fff;
+}
+.table th, .table td,
+.summaryTable th, .summaryTable td {
+  padding:12px; border-bottom:1px solid #ddd; font-size:14px; text-align:left;
+}
+.table tr:hover,
+.summaryTable tr:hover {
+  background:#f2f2f2;
+}
+
+.actionBtn {
+  background:#6c757d; color:#fff; border:none;
+  padding:6px 10px; border-radius:4px; cursor:pointer;
+  font-size:13px; margin-right:5px;
+}
+.actionBtn:hover { background:#5a6268 }
+
+.statusRed    { color:red;    font-weight:bold }
+.statusYellow { color:orange; font-weight:bold }
+.statusGreen  { color:green;  font-weight:bold }
+
+.detailContent p { margin:6px 0; font-size:14px }
+.detailButtons {
+  display:flex; gap:10px; justify-content:center; margin-top:15px;
+}
+.submitBtn,
+.cancelBtn {
+  padding:10px 20px; border:none; border-radius:5px; cursor:pointer;
+}
+.submitBtn { background:#28a745; color:#fff }
+.submitBtn:hover { background:#218838 }
+.cancelBtn { background:#dc3545; color:#fff }
+.cancelBtn:hover { background:#c82333 }
+
+@media (max-width:600px) {
+  .mainContainer { margin:80px 10px 20px }
+  .table th, .table td,
+  .summaryTable th, .summaryTable td {
+    font-size:12px;
+  }
+  .actionBtn,
+  .searchBtn, .resetBtn, .refreshBtn {
+    font-size:12px; padding:6px 10px;
+  }
+}

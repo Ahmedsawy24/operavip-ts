@@ -45,7 +45,7 @@ body {
 .nav-icons {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-grow: 1;
 }
 
@@ -60,6 +60,7 @@ body {
     margin: 0;
     display: flex;
     gap: 20px;
+    justify-content: center;
 }
 
 .nav ul li {
@@ -126,8 +127,9 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-right: 6rem;
+    justify-self: end;
     position: relative;
+    margin-right: 3rem;
 }
 
 .icon {
@@ -155,7 +157,7 @@ body {
 /* ====== Dropdown Content for Icons ====== */
 .dropdown-content {
     position: absolute;
-    top: calc(100% + 15px);
+    top: calc(100% + 30px);
     left: 50%;
     transform: translateX(-50%);
     background-color: #1f2a36;
@@ -169,6 +171,9 @@ body {
     transition: opacity 0.3s, visibility 0.3s;
 }
 
+#profileDropdown{
+    transform: translateX(-65%);
+}
 /* تظهر عند إضافة show */
 .dropdown-content.show {
     visibility: visible;

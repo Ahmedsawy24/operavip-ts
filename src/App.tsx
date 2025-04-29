@@ -29,6 +29,23 @@ import AgingReports from './Pages/HeaderPages/AR/AgingReports/AgingReports';
 import NightAuditProcess from './Pages/HeaderPages/EndOfDay/NightAuditProcess/NightAuditProcess';
 import GenerateFinancialReports from './Pages/HeaderPages/EndOfDay/GenerateFinancialReports/GenerateFinancialReports';
 import RoomsList from './components/RoomsList';
+import ReviewDailyTransactions from './Pages/HeaderPages/EndOfDay/ReviewDailyTransactions/ReviewDailyTransactions';
+import CloseCashierSessions from './Pages/HeaderPages/EndOfDay/CloseCashierSessions/CloseCashierSessions';
+import PostRoomAndTaxCharges from './Pages/HeaderPages/EndOfDay/PostRoomAndTaxCharges/PostRoomandTaxCharges';
+import GuestStatusUpdates from './Pages/SidebarPages/arrivals/GuestStatusUpdates/GuestStatusUpdates';
+import CheckInAssignRooms from './Pages/SidebarPages/arrivals/CheckInAssignRooms/CheckInAssignRooms';
+import VIPHandling from './Pages/SidebarPages/arrivals/VIPHandling/VIPHandling';
+import ExtendStay from './Pages/SidebarPages/In-HouseCustomers/ExtendStay/ExtendStay';
+import RoomChangeRequests from './Pages/SidebarPages/In-HouseCustomers/RoomChangeRequests/RoomChangeRequests';
+import TrackGuestRequests from './Pages/SidebarPages/In-HouseCustomers/GuestRequests/TrackGuestRequests';
+import GuestFolios from './Pages/SidebarPages/accounts/GuestFoliosAndBillingManagement/GuestFolios';
+import CorporateAccounts from './Pages/SidebarPages/accounts/CorporateAccounts/CorporateAccounts';
+import AdvanceDeposits from './Pages/SidebarPages/accounts/AdvanceDeposits/AdvanceDeposits';
+
+
+
+
+
 
 
 
@@ -66,6 +83,22 @@ const App: React.FC = () => (
       <Route path="end-of-day/night-audit" element={<NightAuditProcess />} />
       <Route path="end-of-day/financial-reports" element={<GenerateFinancialReports />} />
       <Route path="testing" element={<RoomsList />} />
+      <Route path="end-of-day/daily-transactions" element={<ReviewDailyTransactions />} />
+      <Route path="end-of-day/close-sessions" element={<CloseCashierSessions />} />
+      <Route path="end-of-day/post-charges" element={<PostRoomAndTaxCharges />} />
+      <Route path="arrivals/guest-status-updates" element={<GuestStatusUpdates />} />
+      <Route path="arrivals/check-in-assign-rooms"element={<CheckInAssignRooms />}/>
+      <Route path="arrivals/vip-handling" element={<VIPHandling/>} />
+      <Route path="in-house/extend-stay" element={<ExtendStay />}/>
+      <Route path="in-house/room-change-requests" element={<RoomChangeRequests />} />
+      <Route path="in-house/guest-requests" element={<TrackGuestRequests />} />
+      <Route path="accounts/guest-folios" element={<GuestFolios />}/>
+      <Route path="accounts/corporate-accounts" element={<CorporateAccounts />}/>
+      <Route path="accounts/advance-deposits" element={<AdvanceDeposits />}/>
+
+
+  
+      
     </Route>
   </Routes>
 </BrowserRouter>
