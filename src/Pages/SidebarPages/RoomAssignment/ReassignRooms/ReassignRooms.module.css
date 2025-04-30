@@ -1,0 +1,182 @@
+.container {
+  width: 100%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Header / Title */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Search Section */
+.searchSection {
+  margin-bottom: 30px;
+  text-align: left;
+}
+.searchSection h2 {
+  margin-bottom: 12px;
+  color: #333;
+}
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.input,
+.select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 160px;
+}
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+.btnSearch {
+  background: #007bff;
+}
+.btnSearch:hover {
+  background: #0056b3;
+}
+
+/* Results Table */
+.resultsSection {
+  margin-bottom: 30px;
+}
+.tableWrapper {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.table th {
+  background: #007bff;
+  color: #fff;
+}
+.table tr:hover {
+  background: #f1f1f1;
+}
+
+/* Actions Buttons */
+.actions .btnView {
+  background: #17a2b8;
+  margin-right: 6px;
+}
+.btnView:hover {
+  background: #138496;
+}
+.actions .btnReassign {
+  background: #ffc107;
+  color: #000;
+}
+.btnReassign:hover {
+  background: #e0a800;
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  text-align: left;
+}
+.close {
+  position: absolute;
+  top: 12px; right: 16px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #aaa;
+}
+.close:hover {
+  color: #000;
+}
+
+/* Modal form */
+.formRow {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Modal Buttons */
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.btnConfirm {
+  background: #28a745;
+}
+.btnConfirm:hover {
+  background: #218838;
+}
+.btnCancel {
+  background: #dc3545;
+}
+.btnCancel:hover {
+  background: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fields {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .input, .select {
+    width: 100%;
+  }
+  .table th, .table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+  .modalContent {
+    width: 95%;
+  }
+}

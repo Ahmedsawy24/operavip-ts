@@ -1,4 +1,3 @@
-// src/App.tsx
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -41,6 +40,30 @@ import TrackGuestRequests from './Pages/SidebarPages/In-HouseCustomers/GuestRequ
 import GuestFolios from './Pages/SidebarPages/accounts/GuestFoliosAndBillingManagement/GuestFolios';
 import CorporateAccounts from './Pages/SidebarPages/accounts/CorporateAccounts/CorporateAccounts';
 import AdvanceDeposits from './Pages/SidebarPages/accounts/AdvanceDeposits/AdvanceDeposits';
+import ManualAutoAssign from './Pages/SidebarPages/RoomAssignment/ManualAutoAssign/ManualAutoAssign';
+import CheckHousekeepingStatus from './Pages/SidebarPages/RoomAssignment/CheckHousekeepingStatus/CheckHousekeepingStatus';
+import ReassignRooms from './Pages/SidebarPages/RoomAssignment/ReassignRooms/ReassignRooms';
+import ViewGuestHistory from './Pages/SidebarPages/GuestManagement/ViewGuestHistory/ViewGuestHistory';
+import ManageLoyaltyPrograms from './Pages/SidebarPages/GuestManagement/ManageLoyaltyPrograms/ManageLoyaltyPrograms';
+import BlacklistRestrictions from './Pages/SidebarPages/GuestManagement/BlacklistRestrictions/BlacklistRestrictions';
+import ViewInvoicesModifyPayments from './Pages/SidebarPages/BillingAndPayments/ViewInvoicesModifyPayments/ViewInvoicesModifyPayments';
+import SplitBillsRefunds from './Pages/SidebarPages/BillingAndPayments/SplitBillsRefunds/SplitBillsRefunds';
+import DailyRevenueSummary from './Pages/SidebarPages/ReportsAndAnalytics/DailyRevenueSummary/DailyRevenueSummary';
+import OccupancyReports from './Pages/SidebarPages/ReportsAndAnalytics/OccupancyReports/OccupancyReports';
+import ReservationTrends from './Pages/SidebarPages/ReportsAndAnalytics/ReservationTrends/ReservationTrends';
+import EndOfDayReports from './Pages/SidebarPages/ReportsAndAnalytics/End-of-DayReports/EndOfDayReports';
+import HousekeepingServices from './Pages/SidebarPages/Guest Requests/HousekeepingServices/HousekeepingServices';
+import FoodBeverageOrders from './Pages/SidebarPages/Guest Requests/Food and Beverage Orders/FoodBeverageOrders';
+import TransportRequests from './Pages/SidebarPages/Guest Requests/TransportRequests/TransportRequests';
+import StaffSchedulingAndPayroll from './Pages/SidebarPages/StaffManagement/StaffSchedulingAndPayroll/StaffSchedulingandPayroll';
+import RoleManagementPerformance from './Pages/SidebarPages/StaffManagement/RoleManagementAndPerformanceTracking/Role ManagementandPerformanceTracking';
+import FinalizePaymentsAndBalances from './Pages/SidebarPages/Check-InAndOut/FinalizePaymentsAndCheckPendingBalances/FinalizePaymentsandCheckPendingBalances'
+import IssueReceipts from './Pages/SidebarPages/Check-InAndOut/IssueReceipts/IssueReceipts';
+import SendFeedbackForms from './Pages/SidebarPages/Check-InAndOut/SendFeedbackForms/SendFeedbackForms';
+
+
+
+
 
 
 
@@ -95,10 +118,29 @@ const App: React.FC = () => (
       <Route path="accounts/guest-folios" element={<GuestFolios />}/>
       <Route path="accounts/corporate-accounts" element={<CorporateAccounts />}/>
       <Route path="accounts/advance-deposits" element={<AdvanceDeposits />}/>
+      <Route path="room-assignment/manual-auto" element={<ManualAutoAssign />} />
+      <Route path="room-assignment/housekeeping-status"element={<CheckHousekeepingStatus />}/>
+      <Route path="room-assignment/reassign"element={<ReassignRooms />}/>
+      <Route path="guest-management/history"element={<ViewGuestHistory />}/>
+      <Route path="guest-management/loyalty"element={<ManageLoyaltyPrograms />}/>
+      <Route path="guest-management/blacklist"element={<BlacklistRestrictions />}/>
+      <Route path="billing/invoices"element={<ViewInvoicesModifyPayments />}/>
+      <Route path="billing/split-bills"element={<SplitBillsRefunds />}/>
+      <Route path="reports/daily-revenue"element={<DailyRevenueSummary />}/>
+      <Route path="reports/occupancy"element={<OccupancyReports />}/>
+      <Route path="reports/trends"element={<ReservationTrends />}/>
+      <Route path="reports/end-of-day"element={<EndOfDayReports />}/>
+      <Route path="requests/housekeeping"element={<HousekeepingServices />}/>
+      <Route path="requests/fnb-orders"element={<FoodBeverageOrders />}/>
+      <Route path="requests/transport"element={<TransportRequests />}/>
+      <Route path="staff/scheduling"element={<StaffSchedulingAndPayroll />}/>
+      <Route path="staff/performance"element={<RoleManagementPerformance />}/>
+      <Route path="checkout/finalize-payments"element={<FinalizePaymentsAndBalances />}/>
+      <Route path="checkout/issue-receipts"element={<IssueReceipts />}/>
+      <Route path="checkout/feedback"element={<SendFeedbackForms />}/>
 
 
-  
-      
+    
     </Route>
   </Routes>
 </BrowserRouter>

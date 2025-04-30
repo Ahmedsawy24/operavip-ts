@@ -1,0 +1,169 @@
+/* src/Pages/SidebarPages/RoomAssignment/CheckHousekeepingStatus/CheckHousekeepingStatus.module.css */
+.container {
+  padding: 20px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Page header */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.pageHeader h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.breadcrumb {
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Search section */
+.searchSection {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+.searchSection h2 {
+  margin: 0 0 15px;
+  color: #333;
+}
+.searchForm {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.searchFields {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+}
+.fieldGroup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.formInput {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.searchButtonRow {
+  text-align: left;
+}
+
+/* Results table */
+.resultsSection h2 {
+  margin: 0 0 15px;
+  color: #333;
+}
+.tableWrapper {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.table th {
+  background: #007bff;
+  color: #fff;
+}
+.table tr:hover {
+  background: #f1f1f1;
+}
+
+/* Badges */
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.Clean        { background: #28a745; color:#fff }
+.Dirty        { background: #dc3545; color:#fff }
+.Inspected    { background: #17a2b8; color:#fff }
+.InProgress   { background: #fd7e14; color:#fff }
+.OutOfService { background: #ffc107; color:#000 }
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 2px;
+}
+.btnPrimary   { background: #007bff; }
+.btnPrimary:hover { background: #0056b3; }
+.btnInfo      { background: #17a2b8; }
+.btnInfo:hover    { background: #138496; }
+.btnSuccess   { background: #28a745; }
+.btnSuccess:hover { background: #218838; }
+.btnWarning   { background: #ffc107; color:#000; }
+.btnWarning:hover { background: #e0a800; }
+.btnDanger    { background: #dc3545; }
+.btnDanger:hover  { background: #c82333; }
+
+/* Modal */
+.modal {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:1000;
+}
+.modalContent {
+  background:#fff;
+  padding:20px;
+  border-radius:6px;
+  width:90%;
+  max-width:500px;
+  position: relative;
+  text-align:left;
+  box-shadow:0 4px 8px rgba(0,0,0,0.3);
+}
+.close {
+  position:absolute;
+  top:10px; right:15px;
+  font-size:1.5rem;
+  cursor:pointer;
+  color:#aaa;
+}
+.close:hover { color:#000 }
+.modalButtons {
+  display:flex;
+  justify-content:flex-start;
+  gap:10px;
+  margin-top:15px;
+}
+.formRow {
+  display:flex;
+  flex-direction:column;
+  margin-bottom:15px;
+}
+
+/* Responsive */
+@media(max-width:768px) {
+  .searchFields { grid-template-columns: 1fr; }
+  .table th, .table td { font-size:14px; }
+  .modalContent { width:95%; }
+}

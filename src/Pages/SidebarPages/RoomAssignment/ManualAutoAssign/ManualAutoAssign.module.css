@@ -1,0 +1,179 @@
+/* src/Pages/SidebarPages/RoomAssignment/ManualAutoAssign/ManualAutoAssign.module.css */
+.container {
+  padding: 20px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Page header */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.pageHeader h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.breadcrumb {
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Sections */
+.searchSection,
+.manualSection,
+.autoSection {
+  margin-bottom: 30px;
+}
+.searchSection h2,
+.manualSection h2,
+.autoSection h2 {
+  text-align: center;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+/* Rows and inputs */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.input,
+.select,
+.textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.input,
+.select {
+  width: 160px;
+}
+.textarea {
+  width: 80%;
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 2px;
+}
+.btnPrimary   { background: #007bff; }
+.btnPrimary:hover { background: #0056b3; }
+.btnInfo      { background: #17a2b8; }
+.btnInfo:hover    { background: #138496; }
+.btnSuccess   { background: #28a745; }
+.btnSuccess:hover { background: #218838; }
+.btnWarning   { background: #ffc107; color: #000; }
+.btnWarning:hover { background: #e0a800; }
+.btnDanger    { background: #dc3545; }
+.btnDanger:hover  { background: #c82333; }
+.btnSecondary { background: #6f42c1; }
+.btnSecondary:hover { background: #5936a2; }
+
+/* Table */
+.tableWrapper { overflow-x: auto; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.table th {
+  background: #007bff;
+  color: #fff;
+}
+.table tr:hover {
+  background: #f1f1f1;
+}
+
+/* Badges */
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.Paid     { background: #28a745; }
+.Pending  { background: #ffc107; color: #000; }
+.Assigned   { background: #28a745; }
+.Unassigned { background: #dc3545; }
+
+/* Success message */
+.success {
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Modals */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+}
+.close:hover {
+  color: #000;
+}
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row { flex-direction: column; }
+  .input, .select { width: 90%; }
+  .table th, .table td { font-size: 14px; }
+}

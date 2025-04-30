@@ -15,7 +15,6 @@ interface AdvanceDeposit {
   remarks: string;
 }
 
-// بيانات وهمية إضافية
 const dummyDeposits: AdvanceDeposit[] = [
   {
     depositId: 'AD-20001',
@@ -50,7 +49,6 @@ const dummyDeposits: AdvanceDeposit[] = [
     processedBy: 'John Doe',
     remarks: 'Refund processed.'
   },
-  // بيانات وهمية إضافية
   {
     depositId: 'AD-20004',
     reservationId: 'RES-10970',
