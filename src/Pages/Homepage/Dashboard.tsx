@@ -1,12 +1,18 @@
 // src/Homepage/Dashboard.tsx
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import './Dashboard.css';
+import { DashboardResponseDTO } from '../../model/Reservation DTO/DashboardResponseDTO';
+import { getDashboardReservations } from '../../api/reservationService';
 
 const Dashboard: React.FC = () => {
   // مراجع لتخزين مثيلات Chart
   const pieChartRef = useRef<Chart | null>(null);
   const barChartRef = useRef<Chart | null>(null);
+  const [dashboard, setDashboard] = useState<DashboardResponseDTO | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'Arrivals'|'Departures'|'InHouse'>('Arrivals');
 
   useEffect(() => {
     // 1. رسم بياني دائري (Occupancy)
@@ -70,7 +76,7 @@ const Dashboard: React.FC = () => {
       });
     }
 
-    // 3. منطق التابات
+   // 3. منطق التابات
     const tabButtons = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
     const tabContents = document.querySelectorAll<HTMLElement>('.tab-content');
     tabButtons.forEach(btn => {
@@ -85,7 +91,7 @@ const Dashboard: React.FC = () => {
       btn.addEventListener('click', handler);
       // cleanup later
       btn.dataset['handler'] = ''; // marker
-    });
+    }); 
 
     // 4. منطق المودال (تفاصيل الحجز)
     const modal = document.getElementById('reservationModal') as HTMLElement | null;
@@ -100,6 +106,21 @@ const Dashboard: React.FC = () => {
     closeBtn?.addEventListener('click', closeModal);
     window.addEventListener('click', outsideClick);
 
+    
+    getDashboardReservations()
+    .then(data => {
+      console.log(data);
+      setDashboard({
+        arrivals: data.arrivals,
+        departures: data.departures,
+        inHouse:   data.inHouse, 
+      });
+      setLoading(false);
+
+    });
+  
+    setLoading(false);
+
     // Cleanup
     return () => {
       pieChartRef.current?.destroy();
@@ -107,12 +128,10 @@ const Dashboard: React.FC = () => {
       viewDetailsButtons.forEach(btn => btn.removeEventListener('click', openModal));
       closeBtn?.removeEventListener('click', closeModal);
       window.removeEventListener('click', outsideClick);
-      // إزالة مستمعي التابات
-      tabButtons.forEach(btn => {
-        const clone = btn.cloneNode(true) as HTMLButtonElement;
-        btn.parentNode?.replaceChild(clone, btn);
-      });
+
     };
+
+
   }, []);
 
   return (
@@ -187,10 +206,20 @@ const Dashboard: React.FC = () => {
               <h2>Reservations</h2>
               {/* التابات */}
               <div className="tabs">
-                <button className="tab-btn active" data-tab="arrivalTab">Arrival</button>
-                <button className="tab-btn" data-tab="departureTab">Departure</button>
-                <button className="tab-btn" data-tab="inHouseTab">In House</button>
+                <button
+                  className={activeTab==='Arrivals' ? 'tab-btn active':'tab-btn'}
+                  onClick={()=>setActiveTab('Arrivals')}
+                >Arrival</button>
+                <button
+                  className={activeTab==='Departures' ? 'tab-btn active':'tab-btn'}
+                  onClick={()=>setActiveTab('Departures')}
+                >Departure</button>
+                <button
+                  className={activeTab==='InHouse' ? 'tab-btn active':'tab-btn'}
+                  onClick={()=>setActiveTab('InHouse')}
+                >In House</button>
               </div>
+
 
               {/* بحث صغير */}
               <div className="search-bar small-search">
@@ -198,115 +227,13 @@ const Dashboard: React.FC = () => {
                 <button id="searchBtn">🔍</button>
               </div>
 
-              {/* جدول Arrival */}
-              <div className="tab-content" id="arrivalTab" style={{ display: 'block' }}>
-                <table className="reservations-table">
-                  <thead>
-                    <tr>
-                      <th>Reservation No.</th>
-                      <th>Status</th>
-                      <th>Room No</th>
-                      <th>Room Type</th>
-                      <th>Guest Name</th>
-                      <th>Phone Number</th>
-                      <th>Payment Status</th>
-                      <th>Check-In</th>
-                      <th>Nights</th>
-                      <th>Rate</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>RES-20001</td>
-                      <td>Confirmed ✅</td>
-                      <td>102</td>
-                      <td>Single Room</td>
-                      <td>Abdullah Khan</td>
-                      <td>+966501112233</td>
-                      <td>Paid ✅</td>
-                      <td>2025-03-20</td>
-                      <td>3</td>
-                      <td>500 SAR</td>
-                      <td>
-                        <button className="view-details" data-res="RES-20001">View Details</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>RES-20002</td>
-                      <td>Checked-In ✅</td>
-                      <td>209</td>
-                      <td>Double Room</td>
-                      <td>Maria Lopez</td>
-                      <td>+966502223344</td>
-                      <td>Pending ⚠️</td>
-                      <td>2025-03-19</td>
-                      <td>2</td>
-                      <td>750 SAR</td>
-                      <td>
-                        <button className="view-details" data-res="RES-20002">View Details</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              {/* جدول Departure */}
-              <div className="tab-content" id="departureTab">
-                <table className="reservations-table">
-                  <thead>
-                    <tr>
-                      <th>Reservation No.</th>
-                      <th>Status</th>
-                      <th>Room No</th>
-                      <th>Room Type</th>
-                      <th>Guest Name</th>
-                      <th>Phone Number</th>
-                      <th>Payment Status</th>
-                      <th>Check-Out</th>
-                      <th>Nights</th>
-                      <th>Balance</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>RES-20003</td>
-                      <td>Confirmed ✅</td>
-                      <td>310</td>
-                      <td>Suite</td>
-                      <td>Jack Smith</td>
-                      <td>+966503334455</td>
-                      <td>Paid ✅</td>
-                      <td>2025-03-23</td>
-                      <td>4</td>
-                      <td>0 SAR</td>
-                      <td>
-                        <button className="view-details" data-res="RES-20003">View Details</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>RES-20004</td>
-                      <td>Confirmed ✅</td>
-                      <td>415</td>
-                      <td>Deluxe Room</td>
-                      <td>Noor Ahmed</td>
-                      <td>+966504445566</td>
-                      <td>Pending ⚠️</td>
-                      <td>2025-03-25</td>
-                      <td>2</td>
-                      <td>300 SAR</td>
-                      <td>
-                        <button className="view-details" data-res="RES-20004">View Details</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              {/* جدول In House */}
-              <div className="tab-content" id="inHouseTab">
-                <table className="reservations-table">
+              {loading && <div>جاري التحميل…</div>}
+              {error && <div className="error">{error}</div>}
+              {!loading && !error && (
+                <>
+                {/* Arrivals Table */}
+                {activeTab==='Arrivals' && (
+                  <table className="reservations-table">
                   <thead>
                     <tr>
                       <th>Reservation No.</th>
@@ -322,37 +249,134 @@ const Dashboard: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
+                  {dashboard?.arrivals.length
+                    ? dashboard!.arrivals.map(r => (
+                  <tr key={r.reservationId}>
+                    <td>RES-{r.reservationId}</td>
+                    <td>{r.status}</td>
+                    <td>{r.roomNumber}</td>
+                    <td>{r.roomType}</td>
+                    <td>{r.guestName}</td>
+                    <td>{r.phoneNumber}</td>
+                    <td>{r.paymentStatus}</td>
+                    <td>{r.ArrivalDate}</td>
+                    <td>{r.DepartureDate}</td>
+                    <td>
+                    <button className="view-details" data-res={r.reservationId}>
+                      View Details
+                    </button>
+                  </td>
+                </tr>
+              ))
+            : (
+                <tr>
+                  <td colSpan={11} className="empty">
+                    لا توجد سجلات للوصول اليوم
+                  </td>
+                </tr>
+              )}
+        </tbody>
+      </table>
+    )}
+
+    {/* Departures Table */}
+    {activeTab==='Departures' && (
+      <table className="reservations-table">
+        <thead>
+          <tr>
+            <th>Reservation No.</th>
+            <th>Status</th>
+            <th>Room No</th>
+            <th>Room Type</th>
+            <th>Guest Name</th>
+            <th>Phone Number</th>
+            <th>Payment Status</th>
+            <th>Arrival Date</th>
+            <th>Departure Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dashboard!.departures.length
+            ? dashboard!.departures.map(r=>(
+              <tr key={r.reservationId}>
+              <td>RES-{r.reservationId}</td>
+              <td>{r.status}</td>
+              <td>{r.roomNumber}</td>
+              <td>{r.roomType}</td>
+              <td>{r.guestName}</td>
+              <td>{r.phoneNumber}</td>
+              <td>{r.paymentStatus}</td>
+              <td>{r.ArrivalDate}</td>
+              <td>{r.DepartureDate}</td>
+              <td>
+              <button className="view-details" data-res={r.reservationId}>
+                View Details
+              </button>
+            </td>
+          </tr>
+              ))
+            : (
+                <tr>
+                  <td colSpan={11} className="empty">
+                    لا توجد سجلات للمغادرة اليوم
+                  </td>
+                </tr>
+              )}
+        </tbody>
+      </table>
+    )}
+
+    {/* In House Table */}
+    {activeTab==='InHouse' && (
+        <table className="reservations-table">
+          <thead>
+            <tr>
+              <th>Reservation No.</th>
+              <th>Status</th>
+              <th>Room No</th>
+              <th>Room Type</th>
+              <th>Guest Name</th>
+              <th>Phone Number</th>
+              <th>Payment Status</th>
+              <th>Arrival Date</th>
+              <th>Departure Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dashboard!.inHouse.length
+              ? dashboard!.inHouse.map(r=>(
+                <tr key={r.reservationId}>
+                <td>RES-{r.reservationId}</td>
+                <td>{r.status}</td>
+                <td>{r.roomNumber}</td>
+                <td>{r.roomType}</td>
+                <td>{r.guestName}</td>
+                <td>{r.phoneNumber}</td>
+                <td>{r.paymentStatus}</td>
+                <td>{r.ArrivalDate}</td>
+                <td>{r.DepartureDate}</td>
+                <td>
+                <button className="view-details" data-res={r.reservationId}>
+                  View Details
+                </button>
+              </td>
+              </tr>
+                  ))
+                : (
                     <tr>
-                      <td>RES-30001</td>
-                      <td>In-House</td>
-                      <td>501</td>
-                      <td>Double Room</td>
-                      <td>Ali Hassan</td>
-                      <td>+966501223344</td>
-                      <td>Paid ✅</td>
-                      <td>2025-03-21</td>
-                      <td>2025-03-27</td>
-                      <td>
-                        <button className="view-details" data-res="RES-30001">View Details</button>
+                      <td colSpan={10} className="empty">
+                        لا توجد نزلاء في الفندق حالياً
                       </td>
                     </tr>
-                    <tr>
-                      <td>RES-30002</td>
-                      <td>In-House</td>
-                      <td>305</td>
-                      <td>Suite</td>
-                      <td>John Doe</td>
-                      <td>+966509876543</td>
-                      <td>Pending ⚠️</td>
-                      <td>2025-03-20</td>
-                      <td>2025-03-29</td>
-                      <td>
-                        <button className="view-details" data-res="RES-30002">View Details</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                  )}
+                </tbody>
+              </table>
+                )}
+              </>
+            )}
+
             </section>
 
             {/* Quick Access Shortcuts */}

@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './WalkInReservations.module.css';
+import { GuestRequestDTO } from '../../../../model/Guest DTO/guestReservationRequest';
+import { walkInReservationRequestDTO } from '../../../../model/Reservation DTO/walkInReservationRequestDTO';
+import { createWalkInReservation } from '../../../../api/reservationService';
 
 // 1. ندّرج أنواع الغرف
 type RoomType = 'Single' | 'Double' | 'Suite' | 'Family';
@@ -10,18 +13,31 @@ interface RoomInfo {
   roomNumber: number;
   rate: number;
 }
+console.log('API base is', process.env.REACT_APP_API_URL);
 
 const WalkInReservations: React.FC = () => {
   // refs لعناصر DOM
-  const checkInDateRef = useRef<HTMLInputElement>(null);
-  const checkOutDateRef = useRef<HTMLInputElement>(null);
-  const numNightsRef = useRef<HTMLInputElement>(null);
-  const roomTypeRef = useRef<HTMLSelectElement>(null);
-  const availableRoomsRef = useRef<HTMLSelectElement>(null);
-  const roomRateRef = useRef<HTMLInputElement>(null);
-  const totalAmountRef = useRef<HTMLInputElement>(null);
-  const amountPaidNowRef = useRef<HTMLInputElement>(null);
+  const firstNameRef      = useRef<HTMLInputElement>(null);
+  const lastNameRef       = useRef<HTMLInputElement>(null);
+  const phoneNumberRef    = useRef<HTMLInputElement>(null);
+  const emailRef          = useRef<HTMLInputElement>(null);
+  const nationalityRef    = useRef<HTMLSelectElement>(null);
+  const identificationRef = useRef<HTMLInputElement>(null);
+  const numAdultsRef      = useRef<HTMLInputElement>(null);
+  const numChildrenRef    = useRef<HTMLInputElement>(null);
+
+  // ── Stay details & payment ──────────────────────────────────────
+  const checkInDateRef      = useRef<HTMLInputElement>(null);
+  const checkOutDateRef     = useRef<HTMLInputElement>(null);
+  const numNightsRef        = useRef<HTMLInputElement>(null);
+  const roomTypeRef         = useRef<HTMLSelectElement>(null);
+  const availableRoomsRef   = useRef<HTMLSelectElement>(null);
+  const roomRateRef         = useRef<HTMLInputElement>(null);
+  const totalAmountRef      = useRef<HTMLInputElement>(null);
+  const amountPaidNowRef    = useRef<HTMLInputElement>(null);
   const remainingBalanceRef = useRef<HTMLInputElement>(null);
+  const specialRequestsRef  = useRef<HTMLTextAreaElement>(null);
+  const paymentMethodRef    = useRef<HTMLSelectElement>(null);
   const confirmBtnRef = useRef<HTMLButtonElement>(null);
   const successMessageRef = useRef<HTMLDivElement>(null);
 
@@ -138,8 +154,10 @@ const WalkInReservations: React.FC = () => {
     modalOverlayRef.current!.style.display = 'none';
   };
 
+  
   const confirmReservation = () => {
     closeModal();
+    submitReservation();
     if (successMessageRef.current) {
       successMessageRef.current.style.display = 'block';
       setTimeout(() => {
@@ -160,10 +178,62 @@ const WalkInReservations: React.FC = () => {
     (document.getElementById('specialRequests') as HTMLTextAreaElement).value = '';
   };
 
+// inside WalkInReservations component, alongside your refs...
+
+async function submitReservation() {
+  console.log('🔔 submitReservation called');    // <<-- did it run?
+  const inLocal  = checkInDateRef.current!.value;   // e.g. "2025-05-02T03:00"
+  const outLocal = checkOutDateRef.current!.value;
+
+  const WalkInGuest: GuestRequestDTO = {
+    firstName:       firstNameRef.current!.value,
+    lastName:        lastNameRef.current!.value,
+    phoneNumber:     phoneNumberRef.current!.value,
+    email:           emailRef.current!.value || undefined,
+    nationality:     nationalityRef.current!.value,
+    identification:  identificationRef.current!.value,
+    numberOfAdults:  parseInt(numAdultsRef.current!.value, 10),
+    numberOfChildren:parseInt(numChildrenRef.current!.value, 10),
+  };
+  // 2) assemble the walk-in DTO
+  const payload: walkInReservationRequestDTO = {
+    WalkInGuest,
+    checkIn:         new Date(inLocal).toISOString(),
+    checkOut:        new Date(outLocal).toISOString(),
+    numberOfNights:  parseInt(numNightsRef.current!.value, 10),
+    selectedRoomId:  1,
+    specialRequest:  specialRequestsRef.current!.value || undefined,
+    totalAmount:     parseFloat(totalAmountRef.current!.value),
+    remainingBalance:parseFloat(remainingBalanceRef.current!.value),
+    paymentMethod:   paymentMethodRef.current!.value,
+  };
+
+  try {
+    console.log(payload);
+    const created = await createWalkInReservation(payload);
+    console.log('✅ API returned:', created);
+
+    // show success banner
+    successMessageRef.current!.style.display = 'block';
+    setTimeout(() => successMessageRef.current!.style.display = 'none', 3000);
+
+    // reset form
+    (document.getElementById('walkInForm') as HTMLFormElement).reset();
+    // clear any refs as needed…
+
+  } catch (err) {
+    console.error(err);
+    alert('❌ Could not create reservation. Check console for details.');
+  }
+}
+
+  
+
   useEffect(() => {
     // ضبط التاريخ الافتراضي
-    const today = new Date().toISOString().split('T')[0];
-    if (checkInDateRef.current) checkInDateRef.current.value = today;
+    const now16 = new Date().toISOString().slice(0,16);
+    if (checkInDateRef.current)  checkInDateRef.current.value  = now16;
+    if (checkOutDateRef.current) checkOutDateRef.current.value = now16;
 
     // ثبت الاستماعات
     checkInDateRef.current?.addEventListener('change', calculateNights);
@@ -171,9 +241,9 @@ const WalkInReservations: React.FC = () => {
     roomTypeRef.current?.addEventListener('change', updateAvailableRooms);
     availableRoomsRef.current?.addEventListener('change', selectRoom);
     amountPaidNowRef.current?.addEventListener('input', updateRemainingBalance);
-    confirmBtnRef.current?.addEventListener('click', openConfirmModal);
+   // confirmBtnRef.current?.addEventListener('click', openConfirmModal);
     modalCancelRef.current?.addEventListener('click', closeModal);
-    modalConfirmRef.current?.addEventListener('click', confirmReservation);
+   // modalConfirmRef.current?.addEventListener('click', confirmReservation);
     modalOverlayRef.current?.addEventListener('click', e => {
       if (e.target === modalOverlayRef.current) closeModal();
     });
@@ -212,27 +282,27 @@ const WalkInReservations: React.FC = () => {
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="firstName">First Name</label>
-                <input type="text" id="firstName" required />
-              </div>
+                <input ref={firstNameRef}      type="text" id="firstName" required />
+                </div>
               <div className={styles.formGroup}>
                 <label htmlFor="lastName">Last Name</label>
-                <input type="text" id="lastName" required />
-              </div>
+                <input ref={lastNameRef}       type="text" id="lastName"  required />
+                </div>
             </div>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="phoneNumber">Phone Number</label>
-                <input type="text" id="phoneNumber" required />
-              </div>
+                <input ref={phoneNumberRef}    type="text" id="phoneNumber" required />
+                </div>
               <div className={styles.formGroup}>
                 <label htmlFor="email">Email (optional)</label>
-                <input type="email" id="email" />
-              </div>
+                <input ref={emailRef}          type="email" id="email" />
+                </div>
             </div>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="nationality">Nationality</label>
-                <select id="nationality" required>
+                <select ref={nationalityRef}   id="nationality" required>
                   <option value="">-- Select Nationality --</option>
                   <option>Saudi Arabia</option>
                   <option>United Arab Emirates</option>
@@ -244,18 +314,18 @@ const WalkInReservations: React.FC = () => {
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="idPassport">ID / Passport Number</label>
-                <input type="text" id="idPassport" required />
-              </div>
+                <input ref={identificationRef} type="text" id="idPassport" required />
+                </div>
             </div>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label htmlFor="numAdults">Number of Adults</label>
-                <input type="number" id="numAdults" min="1" defaultValue={1} required />
-              </div>
+                <input ref={numAdultsRef}      type="number" id="numAdults"  defaultValue={1} required />
+                </div>
               <div className={styles.formGroup}>
                 <label htmlFor="numChildren">Number of Children</label>
-                <input type="number" id="numChildren" min="0" defaultValue={0} required />
-              </div>
+                <input ref={numChildrenRef}    type="number" id="numChildren" defaultValue={0} required />
+                </div>
             </div>
           </form>
         </section>
@@ -265,12 +335,12 @@ const WalkInReservations: React.FC = () => {
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
               <label htmlFor="checkInDate">Check‑In Date</label>
-              <input ref={checkInDateRef} type="date" id="checkInDate" required />
-            </div>
+              <input ref={checkInDateRef}    type="datetime-local" id="checkInDate" required />
+              </div>
             <div className={styles.formGroup}>
               <label htmlFor="checkOutDate">Check‑Out Date</label>
-              <input ref={checkOutDateRef} type="date" id="checkOutDate" required />
-            </div>
+              <input ref={checkOutDateRef}   type="datetime-local" id="checkOutDate" required />
+              </div>
             <div className={styles.formGroup}>
               <label htmlFor="numNights">Number of Nights</label>
               <input ref={numNightsRef} type="number" id="numNights" readOnly />
@@ -301,8 +371,8 @@ const WalkInReservations: React.FC = () => {
           <div className={styles.formRow}>
             <div className={styles.formGroupFull}>
               <label htmlFor="specialRequests">Special Requests (optional)</label>
-              <textarea id="specialRequests" rows={3} />
-            </div>
+              <textarea ref={specialRequestsRef} id="specialRequests" rows={3} />
+              </div>
           </div>
         </section>
 
@@ -311,7 +381,7 @@ const WalkInReservations: React.FC = () => {
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
               <label htmlFor="paymentMethod">Payment Method</label>
-              <select id="paymentMethod" required>
+              <select ref={paymentMethodRef} id="paymentMethod" required>
                 <option value="">-- Select Method --</option>
                 <option>Cash</option>
                 <option>Credit Card</option>
@@ -334,7 +404,7 @@ const WalkInReservations: React.FC = () => {
         </section>
 
         <div className={styles.confirmContainer}>
-          <button ref={confirmBtnRef} className={styles.confirmBtn}>
+          <button className={styles.confirmBtn} onClick={openConfirmModal}>
             ✅ Confirm Walk‑In Reservation
           </button>
         </div>
@@ -352,8 +422,11 @@ const WalkInReservations: React.FC = () => {
             <p><strong>Payment Method:</strong> <span ref={confirmPaymentMethodRef} /></p>
           </div>
           <div className={styles.modalButtons}>
-            <button ref={modalCancelRef} className={styles.modalCancelBtn}>Cancel</button>
-            <button ref={modalConfirmRef} className={styles.modalConfirmBtn}>Confirm Reservation</button>
+            <button onClick={closeModal} className={styles.modalCancelBtn}>Cancel</button>
+            <button onClick={() => {
+                closeModal();
+                submitReservation();
+              }} className={styles.modalConfirmBtn}>Confirm Reservation</button>
           </div>
         </div>
       </div>

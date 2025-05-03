@@ -10,13 +10,22 @@ async function httpGet<T>(path: string): Promise<T> {
 
 async function httpPost<T>(path: string, body: any): Promise<T> {
   const res = await fetch(`${API}${path}`, {
-    method: 'POST',
+    method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
+    body:    JSON.stringify(body)
   });
   if (!res.ok) throw new Error(res.statusText);
-  return res.json();
+
+  // If there's literally no content, bail out with an empty object
+  if (res.status === 204 || res.status === 200) {
+    return {} as T;
+  }
+
+  // Otherwise read the text first, then parse if non-empty
+  const text = await res.text();
+  return text ? JSON.parse(text) : ({} as T);
 }
+
 
 async function httpPut<T>(path: string, body: any): Promise<T> {
   const res = await fetch(`${API}${path}`, {
