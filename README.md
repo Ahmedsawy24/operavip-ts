@@ -19,8 +19,6 @@ It is built with a scalable architecture and secure authentication/authorization
 - Reports & analytics.  
 - Modular & API-driven design.
 
-## 📷 Screenshots
-*(Add some UI screenshots here, e.g. from your frontend or Figma prototypes.)*
 
 ## 📦 Installation
 1. Clone the repository:
