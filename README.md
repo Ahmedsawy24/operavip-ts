@@ -56,6 +56,6 @@ Ahmed Elsawy
 
 📧 Email: elsawya200018@gmail.com
 
-💼 LinkedIn: linkedin.com/in/ahmedelsawy
+💼 LinkedIn: www.linkedin.com/in/ahmed-elsawy-344735315
 
 🏙️ Location: Makkah, Saudi Arabia
